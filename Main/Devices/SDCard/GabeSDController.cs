@@ -56,18 +56,13 @@ namespace FoenixIDE.Simulator.Devices
 
         public override byte ReadByte(int Address)
         {
-            switch (Address)
+            return Address switch
             {
-                case MemoryMap.GABE_SDC_TRANS_STATUS_REG - MemoryMap.GABE_SDC_CTRL_START:
-                    // fake the wait time
-                    return (isPresent && (waitCounter-- > 0)) ? (byte)1 : (byte)0;
-                case MemoryMap.GABE_SDC_TRANS_ERROR_REG - MemoryMap.GABE_SDC_CTRL_START:
-                    // return 
-                    return isPresent ? data[5] : (byte)1;
-                case MemoryMap.GABE_SDC_RX_FIFO_DATA_REG - MemoryMap.GABE_SDC_CTRL_START:
-                    return isPresent ? (readBlock != null ? readBlock[blockPtr++] : (byte)0xEF) : (byte)0;
-            }
-            return data[Address];
+                MemoryMap.GABE_SDC_TRANS_STATUS_REG - MemoryMap.GABE_SDC_CTRL_START => (isPresent && (waitCounter-- > 0)) ? (byte)1 : (byte)0,// fake the wait time
+                MemoryMap.GABE_SDC_TRANS_ERROR_REG - MemoryMap.GABE_SDC_CTRL_START => isPresent ? data[5] : (byte)1,// return 
+                MemoryMap.GABE_SDC_RX_FIFO_DATA_REG - MemoryMap.GABE_SDC_CTRL_START => isPresent ? (readBlock != null ? readBlock[blockPtr++] : (byte)0xEF) : (byte)0,
+                _ => data[Address],
+            };
         }
 
         public override void WriteByte(int Address, byte Value)

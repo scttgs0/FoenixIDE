@@ -122,13 +122,11 @@
 
         public override byte ReadByte(int Address)
         {
-            switch (Address)
+            return Address switch
             {
-                case LineStatus:
-                    return 0x21;
-                default:
-                    return data[Address];
-            }
+                LineStatus => 0x21,
+                _ => data[Address],
+            };
         }
     }
 }

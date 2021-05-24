@@ -135,15 +135,12 @@ namespace FoenixIDE.Processor
 
         public override string ToString()
         {
-            switch (byteLength)
+            return byteLength switch
             {
-                case 2:
-                    return "$" + Value.ToString("X4");
-                case 1:
-                    return "$" + Value.ToString("X2");
-                default:
-                    return Value.ToString();
-            }
+                2 => "$" + Value.ToString("X4"),
+                1 => "$" + Value.ToString("X2"),
+                _ => Value.ToString(),
+            };
         }
 
         /// <summary>

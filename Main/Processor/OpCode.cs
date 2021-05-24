@@ -61,7 +61,7 @@ namespace FoenixIDE.Processor
 
         public string ToString(int Signature)
         {
-            string arg, sig;
+            string sig;
             if (this.Length == 3)
                 sig = "$" + Signature.ToString("X4");
             else if (this.Length == 4)
@@ -69,70 +69,29 @@ namespace FoenixIDE.Processor
             else
                 sig = "$" + Signature.ToString("X2");
 
-            switch (this.AddressMode)
+            string arg = this.AddressMode switch
             {
-                case AddressModes.Interrupt:
-                    arg = sig;
-                    break;
-                case AddressModes.Immediate:
-                    arg = "#" + sig;
-                    break;
-                case AddressModes.DirectPage:
-                case AddressModes.Absolute:
-                case AddressModes.AbsoluteLong:
-                    arg = sig;
-                    break;
-                case AddressModes.DirectPageIndirect:
-                case AddressModes.JmpAbsoluteIndirect:
-                    arg = "(" + sig + ")";
-                    break;
-                case AddressModes.DirectPageIndexedIndirectWithX:
-                case AddressModes.JmpAbsoluteIndexedIndirectWithX:
-                    arg = "(" + sig + ",X)";
-                    break;
-                case AddressModes.DirectPageIndexedWithX:
-                case AddressModes.AbsoluteIndexedWithX:
-                case AddressModes.AbsoluteLongIndexedWithX:
-                    arg = sig + ",X";
-                    break;
-                case AddressModes.DirectPageIndexedWithY:
-                case AddressModes.AbsoluteIndexedWithY:
-                case AddressModes.AbsoluteLongIndexedWithY:
-                    arg = sig + ",Y";
-                    break;
-                case AddressModes.DirectPageIndirectIndexedWithY:
-                    arg = "(" + sig + "),Y";
-                    break;
-                case AddressModes.DirectPageIndirectLong:
-                case AddressModes.JmpAbsoluteIndirectLong:
-                    arg = "[" + sig + "]";
-                    break;
-                case AddressModes.DirectPageIndirectLongIndexedWithY:
-                    arg = "[DP+" + sig + "],Y";
-                    break;
-                case AddressModes.ProgramCounterRelative:
-                case AddressModes.ProgramCounterRelativeLong:
-                    arg = sig;
-                    break;
+                AddressModes.Interrupt => sig,
+                AddressModes.Immediate => "#" + sig,
+                AddressModes.DirectPage or AddressModes.Absolute or AddressModes.AbsoluteLong => sig,
+                AddressModes.DirectPageIndirect or AddressModes.JmpAbsoluteIndirect => "(" + sig + ")",
+                AddressModes.DirectPageIndexedIndirectWithX or AddressModes.JmpAbsoluteIndexedIndirectWithX => "(" + sig + ",X)",
+                AddressModes.DirectPageIndexedWithX or AddressModes.AbsoluteIndexedWithX or AddressModes.AbsoluteLongIndexedWithX => sig + ",X",
+                AddressModes.DirectPageIndexedWithY or AddressModes.AbsoluteIndexedWithY or AddressModes.AbsoluteLongIndexedWithY => sig + ",Y",
+                AddressModes.DirectPageIndirectIndexedWithY => "(" + sig + "),Y",
+                AddressModes.DirectPageIndirectLong or AddressModes.JmpAbsoluteIndirectLong => "[" + sig + "]",
+                AddressModes.DirectPageIndirectLongIndexedWithY => "[DP+" + sig + "],Y",
+                AddressModes.ProgramCounterRelative or AddressModes.ProgramCounterRelativeLong => sig,
                 //case AddressModes.StackAbsolute:
                 //    arg = sig;
                 //    break;
-                case AddressModes.StackDirectPageIndirect:
-                    arg = sig;
-                    break;
-                case AddressModes.StackRelative:
-                    arg = sig + ",S";
-                    break;
-                case AddressModes.StackRelativeIndirectIndexedWithY:
-                    arg = "(" + sig + ",S),Y";
-                    break;
-                case AddressModes.StackProgramCounterRelativeLong:
-                    arg = sig;
-                    break;
-                default:
-                    arg = "";
-                    break;
-            }
+                AddressModes.StackDirectPageIndirect => sig,
+                AddressModes.StackRelative => sig + ",S",
+                AddressModes.StackRelativeIndirectIndexedWithY => "(" + sig + ",S),Y",
+                AddressModes.StackProgramCounterRelativeLong => sig,
+                _ => "",
+            };
+
             return this.Mnemonic + " " + arg;
         }
 

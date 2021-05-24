@@ -238,17 +238,13 @@ namespace FoenixIDE.Processor
 
         public int ReadSignature(int length, int pc)
         {
-            switch (length)
+            return length switch
             {
-                case 2:
-                    return MemMgr.RAM.ReadByte(pc + 1);
-                case 3:
-                    return MemMgr.RAM.ReadWord(pc + 1);
-                case 4:
-                    return MemMgr.RAM.ReadLong(pc + 1);
-            }
-
-            return 0;
+                2 => MemMgr.RAM.ReadByte(pc + 1),
+                3 => MemMgr.RAM.ReadWord(pc + 1),
+                4 => MemMgr.RAM.ReadLong(pc + 1),
+                _ => 0,
+            };
         }
 
         /// <summary>

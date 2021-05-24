@@ -84,136 +84,64 @@ namespace FoenixIDE.Basic
     {
         public static ScanCode GetScanCode(Keys key)
         {
-            switch (key)
+            return key switch
             {
-                case Keys.D0:
-                    return ScanCode.sc_0;
-                case Keys.D1:
-                case Keys.D2:
-                case Keys.D3:
-                case Keys.D4:
-                case Keys.D5:
-                case Keys.D6:
-                case Keys.D7:
-                case Keys.D8:
-                case Keys.D9:
-                    return ScanCode.sc_1 + (key - Keys.D1);
-                case Keys.A:
-                    return ScanCode.sc_a;
-                case Keys.B:
-                    return ScanCode.sc_b;
-                case Keys.C:
-                    return ScanCode.sc_c;
-                case Keys.D:
-                    return ScanCode.sc_d;
-                case Keys.E:
-                    return ScanCode.sc_e;
-                case Keys.F:
-                    return ScanCode.sc_f;
-                case Keys.G:
-                    return ScanCode.sc_g;
-                case Keys.H:
-                    return ScanCode.sc_h;
-                case Keys.I:
-                    return ScanCode.sc_i;
-                case Keys.J:
-                    return ScanCode.sc_j;
-                case Keys.K:
-                    return ScanCode.sc_k;
-                case Keys.L:
-                    return ScanCode.sc_l;
-                case Keys.M:
-                    return ScanCode.sc_m;
-                case Keys.N:
-                    return ScanCode.sc_n;
-                case Keys.O:
-                    return ScanCode.sc_o;
-                case Keys.P:
-                    return ScanCode.sc_p;
-                case Keys.Q:
-                    return ScanCode.sc_q;
-                case Keys.R:
-                    return ScanCode.sc_r;
-                case Keys.S:
-                    return ScanCode.sc_s;
-                case Keys.T:
-                    return ScanCode.sc_t;
-                case Keys.U:
-                    return ScanCode.sc_u;
-                case Keys.V:
-                    return ScanCode.sc_v;
-                case Keys.W:
-                    return ScanCode.sc_w;
-                case Keys.X:
-                    return ScanCode.sc_x;
-                case Keys.Y:
-                    return ScanCode.sc_y;
-                case Keys.Z:
-                    return ScanCode.sc_z;
-                case Keys.Return:
-                    return ScanCode.sc_enter;
-                case Keys.Delete:
-                case Keys.Back:
-                    return ScanCode.sc_backspace;
-                case Keys.Space:
-                    return ScanCode.sc_space;
-                case Keys.Oemcomma:
-                    return ScanCode.sc_comma;
-                case Keys.OemPeriod:
-                    return ScanCode.sc_period;
-                case Keys.OemSemicolon:
-                    return ScanCode.sc_semicolon;
-                case Keys.Escape:
-                    return ScanCode.sc_escape;
-                case Keys.Oem3: // back tick
-                    return ScanCode.sc_grave;
-                case Keys.OemQuotes:
-                    return ScanCode.sc_apostrophe;
-                case Keys.OemOpenBrackets:
-                    return ScanCode.sc_bracketLeft;
-                case Keys.OemCloseBrackets:
-                    return ScanCode.sc_bracketRight;
-                case Keys.OemMinus:
-                    return ScanCode.sc_minus;
-                case Keys.Oemplus:
-                    return ScanCode.sc_equals;
-                case Keys.Tab:
-                    return ScanCode.sc_tab;
-                case Keys.Oem2:
-                    return ScanCode.sc_slash;
-                case Keys.Oem5:
-                    return ScanCode.sc_backslash;
-                case Keys.ShiftKey:
-                    return ScanCode.sc_shiftLeft;
-                case Keys.Menu:
-                case Keys.Alt:
-                    return ScanCode.sc_altLeft;
-                case Keys.ControlKey:
-                    return ScanCode.sc_controlLeft;
-                case Keys.Up:
-                    return ScanCode.sc_up_arrow;
-                case Keys.Down:
-                    return ScanCode.sc_down_arrow;
-                case Keys.Left:
-                    return ScanCode.sc_left_arrow;
-                case Keys.Right:
-                    return ScanCode.sc_right_arrow;
-                case Keys.F1:
-                case Keys.F2:
-                case Keys.F3:
-                case Keys.F4:
-                case Keys.F5:
-                case Keys.F6:
-                case Keys.F7:
-                case Keys.F8:
-                case Keys.F9:
-                case Keys.F10:
-                    return ScanCode.sc_F1 + (key - Keys.F1);
-                case Keys.F11:
-                case Keys.F12:
-                    return ScanCode.sc_F11 + (key - Keys.F11);
-            }
-            return ScanCode.sc_null;
+                Keys.D0 => ScanCode.sc_0,
+                Keys.D1 or Keys.D2 or Keys.D3 or Keys.D4 or Keys.D5 or Keys.D6 or Keys.D7 or Keys.D8 or Keys.D9 => ScanCode.sc_1 + (key - Keys.D1),
+                Keys.A => ScanCode.sc_a,
+                Keys.B => ScanCode.sc_b,
+                Keys.C => ScanCode.sc_c,
+                Keys.D => ScanCode.sc_d,
+                Keys.E => ScanCode.sc_e,
+                Keys.F => ScanCode.sc_f,
+                Keys.G => ScanCode.sc_g,
+                Keys.H => ScanCode.sc_h,
+                Keys.I => ScanCode.sc_i,
+                Keys.J => ScanCode.sc_j,
+                Keys.K => ScanCode.sc_k,
+                Keys.L => ScanCode.sc_l,
+                Keys.M => ScanCode.sc_m,
+                Keys.N => ScanCode.sc_n,
+                Keys.O => ScanCode.sc_o,
+                Keys.P => ScanCode.sc_p,
+                Keys.Q => ScanCode.sc_q,
+                Keys.R => ScanCode.sc_r,
+                Keys.S => ScanCode.sc_s,
+                Keys.T => ScanCode.sc_t,
+                Keys.U => ScanCode.sc_u,
+                Keys.V => ScanCode.sc_v,
+                Keys.W => ScanCode.sc_w,
+                Keys.X => ScanCode.sc_x,
+                Keys.Y => ScanCode.sc_y,
+                Keys.Z => ScanCode.sc_z,
+                Keys.Return => ScanCode.sc_enter,
+                Keys.Delete or Keys.Back => ScanCode.sc_backspace,
+                Keys.Space => ScanCode.sc_space,
+                Keys.Oemcomma => ScanCode.sc_comma,
+                Keys.OemPeriod => ScanCode.sc_period,
+                Keys.OemSemicolon => ScanCode.sc_semicolon,
+                Keys.Escape => ScanCode.sc_escape,
+                // back tick
+                Keys.Oem3 => ScanCode.sc_grave,
+                Keys.OemQuotes => ScanCode.sc_apostrophe,
+                Keys.OemOpenBrackets => ScanCode.sc_bracketLeft,
+                Keys.OemCloseBrackets => ScanCode.sc_bracketRight,
+                Keys.OemMinus => ScanCode.sc_minus,
+                Keys.Oemplus => ScanCode.sc_equals,
+                Keys.Tab => ScanCode.sc_tab,
+                Keys.Oem2 => ScanCode.sc_slash,
+                Keys.Oem5 => ScanCode.sc_backslash,
+                Keys.ShiftKey => ScanCode.sc_shiftLeft,
+                Keys.Menu or Keys.Alt => ScanCode.sc_altLeft,
+                Keys.ControlKey => ScanCode.sc_controlLeft,
+                Keys.Up => ScanCode.sc_up_arrow,
+                Keys.Down => ScanCode.sc_down_arrow,
+                Keys.Left => ScanCode.sc_left_arrow,
+                Keys.Right => ScanCode.sc_right_arrow,
+                Keys.F1 or Keys.F2 or Keys.F3 or Keys.F4 or Keys.F5 or Keys.F6 or Keys.F7 or Keys.F8 or Keys.F9 or Keys.F10 => ScanCode.sc_F1 + (key - Keys.F1),
+                Keys.F11 or Keys.F12 => ScanCode.sc_F11 + (key - Keys.F11),
+                _ => ScanCode.sc_null,
+            };
         }
     }
 

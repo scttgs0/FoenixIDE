@@ -104,71 +104,38 @@ namespace FoenixIDE.Processor
         /// <returns></returns>
         public int GetValue(AddressModes mode, int signatureBytes, int width)
         {
-            switch (mode)
+            return mode switch
             {
-                case AddressModes.Accumulator:
-                    return cpu.A.Value;
-                case AddressModes.Absolute:
-                    return GetAbsolute(signatureBytes, cpu.DataBank, width);
-                case AddressModes.AbsoluteLong:
-                    return GetAbsoluteLong(signatureBytes);
-                case AddressModes.JmpAbsoluteIndirect:
-                    // JMP (addr)
-                    //return GetAbsoluteIndirectAddress(signatureBytes, cpu.ProgramBank);
-                    return GetAbsoluteIndirectAddressLong((cpu.PC & 0xFF_0000) + signatureBytes);
-                case AddressModes.JmpAbsoluteIndirectLong:
-                    // JMP [addr] - jumps to a 24-bit address pointed to by addr in direct page.
-                    return GetAbsoluteIndirectAddressLong(signatureBytes);
-                case AddressModes.JmpAbsoluteIndexedIndirectWithX:
-                    // JMP (addr,X)
-                    return GetJumpAbsoluteIndexedIndirect(signatureBytes, cpu.X);
-                case AddressModes.AbsoluteIndexedWithX:
-                    // LDA $2000,X
-                    return GetIndexed(signatureBytes, cpu.DataBank, cpu.X, width);
-                case AddressModes.AbsoluteLongIndexedWithX:
-                    // LDA $12D080,X
-                    return GetAbsoluteLongIndexed(signatureBytes, cpu.X);
-                case AddressModes.AbsoluteIndexedWithY:
-                    return GetIndexed(signatureBytes, cpu.DataBank, cpu.Y, width);
-                case AddressModes.AbsoluteLongIndexedWithY:
-                    return GetAbsoluteLongIndexed(signatureBytes, cpu.Y);
-                case AddressModes.DirectPage:
-                    return GetAbsolute(signatureBytes, cpu.DirectPage, width);
-                case AddressModes.DirectPageIndexedWithX:
-                    return GetIndexed(signatureBytes, cpu.DirectPage, cpu.X, width);
-                case AddressModes.DirectPageIndexedWithY:
-                    return GetIndexed(signatureBytes, cpu.DirectPage, cpu.Y, width);
-                case AddressModes.DirectPageIndexedIndirectWithX:
-                    //LDA(dp, X)
-                    return GetDirectIndexedIndirect(signatureBytes, cpu.X);
-                case AddressModes.DirectPageIndirect:
-                    //LDA (dp)
-                    return GetDirectIndirect(signatureBytes);
-                case AddressModes.DirectPageIndirectIndexedWithY:
-                    //LDA(dp),Y
-                    return GetDirectPageIndirectIndexed(signatureBytes, cpu.Y);
-                case AddressModes.DirectPageIndirectLong:
-                    return GetDirectIndirectLong(signatureBytes);
-                case AddressModes.DirectPageIndirectLongIndexedWithY:
-                    return GetDirectPageIndirectIndexedLong(signatureBytes, cpu.Y);
-                case AddressModes.ProgramCounterRelative:
-                    return cpu.PC + 2 + MakeSignedByte((byte)signatureBytes);
-                case AddressModes.ProgramCounterRelativeLong:
-                    return cpu.PC + 3 + MakeSignedWord((UInt16)signatureBytes);
-                case AddressModes.StackImplied:
-                    return cpu.Stack.Value;
+                AddressModes.Accumulator => cpu.A.Value,
+                AddressModes.Absolute => GetAbsolute(signatureBytes, cpu.DataBank, width),
+                AddressModes.AbsoluteLong => GetAbsoluteLong(signatureBytes),
+                AddressModes.JmpAbsoluteIndirect => GetAbsoluteIndirectAddressLong((cpu.PC & 0xFF_0000) + signatureBytes),// JMP (addr)
+                                                                                                                          //return GetAbsoluteIndirectAddress(signatureBytes, cpu.ProgramBank);
+                AddressModes.JmpAbsoluteIndirectLong => GetAbsoluteIndirectAddressLong(signatureBytes),// JMP [addr] - jumps to a 24-bit address pointed to by addr in direct page.
+                AddressModes.JmpAbsoluteIndexedIndirectWithX => GetJumpAbsoluteIndexedIndirect(signatureBytes, cpu.X),// JMP (addr,X)
+                AddressModes.AbsoluteIndexedWithX => GetIndexed(signatureBytes, cpu.DataBank, cpu.X, width),// LDA $2000,X
+                AddressModes.AbsoluteLongIndexedWithX => GetAbsoluteLongIndexed(signatureBytes, cpu.X),// LDA $12D080,X
+                AddressModes.AbsoluteIndexedWithY => GetIndexed(signatureBytes, cpu.DataBank, cpu.Y, width),
+                AddressModes.AbsoluteLongIndexedWithY => GetAbsoluteLongIndexed(signatureBytes, cpu.Y),
+                AddressModes.DirectPage => GetAbsolute(signatureBytes, cpu.DirectPage, width),
+                AddressModes.DirectPageIndexedWithX => GetIndexed(signatureBytes, cpu.DirectPage, cpu.X, width),
+                AddressModes.DirectPageIndexedWithY => GetIndexed(signatureBytes, cpu.DirectPage, cpu.Y, width),
+                AddressModes.DirectPageIndexedIndirectWithX => GetDirectIndexedIndirect(signatureBytes, cpu.X),//LDA(dp, X)
+                AddressModes.DirectPageIndirect => GetDirectIndirect(signatureBytes),//LDA (dp)
+                AddressModes.DirectPageIndirectIndexedWithY => GetDirectPageIndirectIndexed(signatureBytes, cpu.Y),//LDA(dp),Y
+                AddressModes.DirectPageIndirectLong => GetDirectIndirectLong(signatureBytes),
+                AddressModes.DirectPageIndirectLongIndexedWithY => GetDirectPageIndirectIndexedLong(signatureBytes, cpu.Y),
+                AddressModes.ProgramCounterRelative => cpu.PC + 2 + MakeSignedByte((byte)signatureBytes),
+                AddressModes.ProgramCounterRelativeLong => cpu.PC + 3 + MakeSignedWord((UInt16)signatureBytes),
+                AddressModes.StackImplied => cpu.Stack.Value,
                 //case AddressModes.StackAbsolute:
                 //    return signatureBytes;
-                case AddressModes.StackDirectPageIndirect:
-                    throw new NotImplementedException();
-                case AddressModes.StackRelative:
-                    return GetAbsoluteLong(cpu.Stack.Value + signatureBytes);
-                case AddressModes.StackRelativeIndirectIndexedWithY:
-                    return GetAbsoluteLong(cpu.MemMgr.ReadWord(cpu.Stack.Value + signatureBytes) + cpu.Y.Value);
-                case AddressModes.StackProgramCounterRelativeLong:
-                    throw new NotImplementedException();
-            }
-            return signatureBytes;
+                AddressModes.StackDirectPageIndirect => throw new NotImplementedException(),
+                AddressModes.StackRelative => GetAbsoluteLong(cpu.Stack.Value + signatureBytes),
+                AddressModes.StackRelativeIndirectIndexedWithY => GetAbsoluteLong(cpu.MemMgr.ReadWord(cpu.Stack.Value + signatureBytes) + cpu.Y.Value),
+                AddressModes.StackProgramCounterRelativeLong => throw new NotImplementedException(),
+                _ => signatureBytes,
+            };
         }
 
         private int GetDirectIndirect(int Address)

@@ -43,8 +43,8 @@ namespace FoenixIDE.Simulator.FileFormat
                     string reclen = l.Substring(1, 2);
                     string offset = l.Substring(3, 4);
                     string rectype = l.Substring(7, 2);
-                    string data = l.Substring(9, l.Length - 11);
-                    string checksum = l.Substring(l.Length - 2);
+                    string data = l[9..^2];
+                    string checksum = l[^2..];
 
                     switch (rectype)
                     {

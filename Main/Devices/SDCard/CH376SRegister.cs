@@ -222,13 +222,13 @@ namespace FoenixIDE.Simulator.Devices
                 string fileToOpen = name;
                 if (fileToOpen.StartsWith("/"))
                 {
-                    fileToOpen = fileToOpen.Substring(1).Replace("/*", "");
+                    fileToOpen = fileToOpen[1..].Replace("/*", "");
                 }
                 // we only store the name of the file, not the path
                 int lastSlash = fileToOpen.LastIndexOf("/");
                 if (lastSlash > 0)
                 {
-                    fileToOpen = fileToOpen.Substring(lastSlash + 1);
+                    fileToOpen = fileToOpen[(lastSlash + 1)..];
                 }
                 ShortLongFileName slf = FindByShortName(fileToOpen);
                 if (slf != null)
@@ -254,7 +254,7 @@ namespace FoenixIDE.Simulator.Devices
             if (pos > 0)
             {
                 string filename = longname.Substring(0, pos).Replace(" ", "").Replace("\\", "");
-                string extension = longname.Substring(pos + 1);
+                string extension = longname[(pos + 1)..];
                 if (filename.Length > 8)
                 {
                     filename = filename.Substring(0, 6) + "~1";
@@ -329,7 +329,7 @@ namespace FoenixIDE.Simulator.Devices
                 ShortLongFileName slf = new()
                 {
                     longName = dir,
-                    shortName = ShortFilename(dir.Substring(path.Length)) + (char)(byte)FileAttributes.Directory + spaces + spaces + "\0\0\0\0",
+                    shortName = ShortFilename(dir[path.Length..]) + (char)(byte)FileAttributes.Directory + spaces + spaces + "\0\0\0\0",
                     isDirectory = true
                 };
                 dircontent.Add(slf);
@@ -342,7 +342,7 @@ namespace FoenixIDE.Simulator.Devices
                 ShortLongFileName slf = new()
                 {
                     longName = file,
-                    shortName = ShortFilename(file.Substring(path.Length)) + (char)(byte)FileAttributes.Archive + spaces + spaces + System.Text.Encoding.Default.GetString(sizeB)
+                    shortName = ShortFilename(file[path.Length..]) + (char)(byte)FileAttributes.Archive + spaces + spaces + System.Text.Encoding.Default.GetString(sizeB)
                 };
                 while (ListContains(dircontent, slf.shortName.Substring(0, 11)))
                 {
@@ -353,7 +353,7 @@ namespace FoenixIDE.Simulator.Devices
 
                     int fileVal = Convert.ToInt32(slf.shortName.Substring(7, 1));
                     fileVal++;
-                    slf.shortName = slf.shortName.Substring(0, 7) + fileVal + slf.shortName.Substring(8);
+                    slf.shortName = slf.shortName.Substring(0, 7) + fileVal + slf.shortName[8..];
                 }
                 dircontent.Add(slf);
             }

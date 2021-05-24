@@ -162,7 +162,7 @@ namespace FoenixIDE.UI
                 }
             }
             String hexSize = flen.ToString("X6");
-            FileSizeResultLabel.Text = "$" + hexSize.Substring(0, 2) + ":" + hexSize.Substring(2);
+            FileSizeResultLabel.Text = "$" + hexSize.Substring(0, 2) + ":" + hexSize[2..];
             return flen;
         }
 
@@ -284,8 +284,8 @@ namespace FoenixIDE.UI
                                 string reclen = l.Substring(1, 2);
                                 string offset = l.Substring(3, 4);
                                 string rectype = l.Substring(7, 2);
-                                string data = l.Substring(9, l.Length - 11);
-                                string checksum = l.Substring(l.Length - 2);
+                                string data = l[9..^2];
+                                string checksum = l[^2..];
 
                                 switch (rectype)
                                 {
@@ -583,7 +583,7 @@ namespace FoenixIDE.UI
             {
                 int n = Convert.ToInt32(item, 16);
                 String value = n.ToString("X6");
-                tb.Text = value.Substring(0, 2) + ":" + value.Substring(2);
+                tb.Text = value.Substring(0, 2) + ":" + value[2..];
             }
         }
 

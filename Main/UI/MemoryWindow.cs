@@ -389,7 +389,7 @@ namespace FoenixIDE.UI
                 String val = mem.Y.ToString("X2");
 
                 String address = mem.X.ToString("X6");
-                PositionLabel.Text = "Adress: $" + address.Substring(0, 2) + ":" + address.Substring(2) + ", Value: " + val; // + ", X: " + e.X + ", Y: " + e.Y + ", Col: " + col + ", Line: " + line;
+                PositionLabel.Text = "Adress: $" + address.Substring(0, 2) + ":" + address[2..] + ", Value: " + val; // + ", X: " + e.X + ", Y: " + e.Y + ", Col: " + col + ", Line: " + line;
             }
             else
             {
@@ -461,7 +461,7 @@ namespace FoenixIDE.UI
             if (mem.X != -1)
             {
                 String rawAddress = mem.X.ToString("X6");
-                String address = "$" + rawAddress.Substring(0, 2) + ":" + rawAddress.Substring(2);
+                String address = "$" + rawAddress.Substring(0, 2) + ":" + rawAddress[2..];
                 if (HighlightPanel.Text != "")
                 {
                     // The result may be a hexadecimal value

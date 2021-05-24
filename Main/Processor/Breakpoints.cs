@@ -30,7 +30,7 @@ namespace FoenixIDE.Processor
         public string GetHex(int value)
         {
             String val = value.ToString("X6");
-            return "$" + val.Substring(0, 2) + ":" + val.Substring(2);
+            return "$" + val.Substring(0, 2) + ":" + val[2..];
         }
 
         public int GetIntFromHex(string Hex)

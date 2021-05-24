@@ -339,7 +339,7 @@ namespace FoenixIDE.UI
                 {
                     DebugLine line = codeList[TopLineIndex + row];
                     string value = line.PC.ToString("X6");
-                    BPCombo.Text = "$" + value.Substring(0, 2) + ":" + value.Substring(2);
+                    BPCombo.Text = "$" + value.Substring(0, 2) + ":" + value[2..];
                     AddBPButton_Click(null, null);
                 }
             }
@@ -354,7 +354,7 @@ namespace FoenixIDE.UI
                 {
                     DebugLine line = codeList[TopLineIndex + row];
                     string value = line.PC.ToString("X6");
-                    BPCombo.Text = "$" + value.Substring(0, 2) + ":" + value.Substring(2);
+                    BPCombo.Text = "$" + value.Substring(0, 2) + ":" + value[2..];
                     DeleteBPButton_Click(null, null);
                 }
             }
@@ -771,7 +771,7 @@ namespace FoenixIDE.UI
         {
             int jumpAddress = Convert.ToInt32(this.locationInput.Text.Replace(":", ""), 16);
             String address = jumpAddress.ToString("X6");
-            locationInput.Text = address.Substring(0, 2) + ":" + address.Substring(2);
+            locationInput.Text = address.Substring(0, 2) + ":" + address[2..];
         }
 
         // Don't try to display the CPU information too often

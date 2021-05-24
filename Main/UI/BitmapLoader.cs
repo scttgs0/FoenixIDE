@@ -57,7 +57,7 @@ namespace FoenixIDE.UI
             LoadAddressTextBox.Enabled = !LUTSelected;
             if (FileTypesCombo.SelectedItem.ToString().StartsWith("LUT"))
             {
-                int lut = Convert.ToInt32(FileTypesCombo.SelectedItem.ToString().Substring(4));
+                int lut = Convert.ToInt32(FileTypesCombo.SelectedItem.ToString()[4..]);
                 LoadAddressTextBox.Enabled = false;
                 LoadAddressTextBox.Text = (MemoryLocations.MemoryMap.GRP_LUT_BASE_ADDR + lut * 1024).ToString("X6");
             }
@@ -66,7 +66,7 @@ namespace FoenixIDE.UI
         private String FormatAddress(int address)
         {
             String size = (address).ToString("X6");
-            return "$" + size.Substring(0, 2) + ":" + size.Substring(2);
+            return "$" + size.Substring(0, 2) + ":" + size[2..];
         }
         /*
          * Let the user select a file from the file system and display it in a text box.

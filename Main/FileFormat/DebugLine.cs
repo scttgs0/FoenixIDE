@@ -127,7 +127,7 @@ namespace FoenixIDE.Simulator.FileFormat
                 {
                     label = tokens[0];
                     // Remove the first item
-                    source = value.Substring(label.Length).Trim();
+                    source = value[label.Length..].Trim();
                 }
                 else
                 {
@@ -171,7 +171,7 @@ namespace FoenixIDE.Simulator.FileFormat
          */
         public string GetAddressName()
         {
-            string mnemonic = source.Substring(4);
+            string mnemonic = source[4..];
             int colon = mnemonic.IndexOf(';');
             if (colon > -1)
             {

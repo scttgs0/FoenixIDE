@@ -10,19 +10,19 @@ namespace FoenixIDE.CharEditor
         byte[] clipData = null;
         byte[] FontData = new byte[8 * 256];
         byte[] characterData = new byte[16];
-        bool[,] grid = new bool[8, 8];
+        readonly bool[,] grid = new bool[8, 8];
         int CharIndex = 0;
-        int Columns = 8;
+        readonly int Columns = 8;
         int Rows = 8;
-        Color Color0 = Color.Black;
-        Color Color1 = Color.LightGreen;
+        readonly Color Color0 = Color.Black;
+        readonly Color Color1 = Color.LightGreen;
         MouseButtons MouseHeld = MouseButtons.None;
         bool ColorHeld = false;
 
         public event EventHandler CharacterSaved;
 
-        Brush textBrush = new SolidBrush(Color.LightGreen);
-        Pen borderPen = new(Color.DarkGray);
+        readonly Brush textBrush = new SolidBrush(Color.LightGreen);
+        readonly Pen borderPen = new(Color.DarkGray);
 
         public EditControl()
         {

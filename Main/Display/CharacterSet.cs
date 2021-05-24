@@ -39,7 +39,7 @@ namespace FoenixIDE.Display
         public int Length;
         public MemoryLocations.MemoryRAM CharacterData;
         //private int charWidth = 8;
-        private int charHeight = 8;
+        private readonly int charHeight = 8;
 
         /// <summary>
         /// Returns a single row (byte) in the character data. 

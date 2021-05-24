@@ -7,8 +7,8 @@ namespace FoenixIDE.Simulator.Devices
      */
     public class MathFloatRegister : MemoryLocations.MemoryRAM
     {
-        byte[] inputData = new byte[16];
-        byte[] outputData = new byte[16];
+        readonly byte[] inputData = new byte[16];
+        readonly byte[] outputData = new byte[16];
 
         public MathFloatRegister(int StartAddress, int Length) : base(StartAddress, Length)
         {

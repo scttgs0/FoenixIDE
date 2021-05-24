@@ -6,7 +6,7 @@ namespace FoenixIDE.Simulator.Devices
     {
         private bool mouseDevice = false;
         private byte ps2PacketCntr = 0;
-        private byte[] ps2packet = new byte[3];
+        private readonly byte[] ps2packet = new byte[3];
         private FoenixSystem kernel;
 
         public KeyboardRegister(int StartAddress, int Length) : base(StartAddress, Length)

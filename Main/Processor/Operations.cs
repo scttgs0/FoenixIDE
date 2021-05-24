@@ -8,7 +8,7 @@ namespace FoenixIDE.Processor
     */
     public class Operations
     {
-        private CPU cpu;
+        private readonly CPU cpu;
         /// <summary>
         /// Used for addressing modes that 
         /// </summary>

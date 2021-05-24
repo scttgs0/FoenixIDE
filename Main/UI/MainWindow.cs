@@ -24,26 +24,26 @@ namespace FoenixIDE.UI
         public UI.CPUWindow debugWindow;
         public MemoryWindow memoryWindow;
         public UploaderWindow uploaderWindow;
-        private WatchForm watchWindow = new();
-        private SDCardWindow sdCardWindow = new();
+        private readonly WatchForm watchWindow = new();
+        private readonly SDCardWindow sdCardWindow = new();
         private TileEditor tileEditor;
         private CharEditorWindow charEditor;
         public SerialTerminal terminal;
-        private JoystickForm joystickWindow = new();
-        private GameGeneratorForm GGF = new();
+        private readonly JoystickForm joystickWindow = new();
+        private readonly GameGeneratorForm GGF = new();
 
         // Local variables and events
         private byte previousGraphicMode;
         private delegate void TileClickEvent(Point tile);
         public delegate void TileLoadedEvent(int layer);
         private TileClickEvent TileClicked;
-        private ResourceChecker ResChecker = new();
+        private readonly ResourceChecker ResChecker = new();
         private delegate void TransmitByteFunction(byte Value);
         private delegate void ShowFormFunction();
-        private String defaultKernel = @"roms\kernel.hex";
-        private int jumpStartAddress;
-        private bool disabledIRQs = false;
-        private bool autoRun = true;
+        private readonly String defaultKernel = @"roms\kernel.hex";
+        private readonly int jumpStartAddress;
+        private readonly bool disabledIRQs = false;
+        private readonly bool autoRun = true;
         private BoardVersion version = BoardVersion.RevC;
         public static MainWindow Instance = null;
         private delegate void WriteCPSFPSFunction(string CPS, string FPS);
@@ -946,7 +946,7 @@ namespace FoenixIDE.UI
             DIP7 - GAMMA Correction ON/OFF
             DIP8- HDD INSTALLED
         */
-        private bool[] switches = new bool[8];
+        private readonly bool[] switches = new bool[8];
         private void DipSwitch_Paint(object sender, PaintEventArgs e)
         {
             base.OnPaint(e);

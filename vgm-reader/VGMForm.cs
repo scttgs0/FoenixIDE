@@ -262,7 +262,7 @@ namespace vgm_reader
             
         }
 
-        byte[] AYRegisters = new byte[15];
+        readonly byte[] AYRegisters = new byte[15];
         private void DisplayAY38910Value(StringBuilder s, byte register, byte value)
         {
             AYRegisters[register] = value;

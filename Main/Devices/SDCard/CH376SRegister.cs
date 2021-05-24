@@ -18,16 +18,15 @@ namespace FoenixIDE.Simulator.Devices
 
         string filename = "";
         string fileToReadAsBytes = null;
-        string spaces = "\0\0\0\0\0\0\0\0";
-
-        List<ShortLongFileName> dircontent = new();
+        readonly string spaces = "\0\0\0\0\0\0\0\0";
+        readonly List<ShortLongFileName> dircontent = new();
         int dirItem = 0;
         string filedata = "";
         int filepos = -1;
         int fileoffset = 0;
 
         int byteRead = 0;
-        byte[] byteReadArray = new byte[4];
+        readonly byte[] byteReadArray = new byte[4];
         byte[] fileArray;
 
         public CH376SRegister(int StartAddress, int Length) : base(StartAddress, Length)

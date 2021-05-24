@@ -130,7 +130,7 @@ namespace FoenixIDE.Timers
         /// <summary>
         /// The callback used by the the API
         /// </summary>
-        private TimerCallback timerCallback;
+        private readonly TimerCallback timerCallback;
 
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace FoenixIDE.Timers
         /// <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
         public bool Enabled { get; private set; }
 
-        private object syncLock = new();
+        private readonly object syncLock = new();
 
         /// <summary>
         /// Gets or sets the interval at which to raise the    

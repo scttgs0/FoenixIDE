@@ -9,10 +9,10 @@ namespace FoenixIDE.Simulator.FileFormat
     {
         private ResourceChecker Resources;
         private const int PHRASE_LENGTH = 16;
-        private Processor.Breakpoints BreakPoints;
-        private SortedList<int, DebugLine> codeList;
-        private FoenixSystem kernel;
-        private SortedList<int, WatchedMemory> watchList;
+        private readonly Processor.Breakpoints BreakPoints;
+        private readonly SortedList<int, DebugLine> codeList;
+        private readonly FoenixSystem kernel;
+        private readonly SortedList<int, WatchedMemory> watchList;
         public BoardVersion Version;
 
         private FoeniXmlFile() { }

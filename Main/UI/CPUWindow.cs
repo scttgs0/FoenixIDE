@@ -21,8 +21,7 @@ namespace FoenixIDE.UI
 
         public static CPUWindow Instance = null;
         private FoenixSystem kernel = null;
-        private int[] ActiveLine = { 0, 0, 0 };  // PC, startofline, width - the point of this is to underline the ADDRESS name
-
+        private readonly int[] ActiveLine = { 0, 0, 0 };  // PC, startofline, width - the point of this is to underline the ADDRESS name
 
         const int ROW_HEIGHT = 13;
         private int IRQPC = 0; // we only keep track of a single interrupt

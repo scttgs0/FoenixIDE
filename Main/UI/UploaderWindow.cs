@@ -21,9 +21,8 @@ namespace FoenixIDE.UI
         public static string[] ports;
         public FoenixSystem kernel = null;
         private BoardVersion boardVersion = BoardVersion.RevC;
-
-        SerialPort serial = new();
-        private Queue<byte> recievedData = new();
+        readonly SerialPort serial = new();
+        private readonly Queue<byte> recievedData = new();
 
         public void SetBoardVersion(BoardVersion ver)
         {

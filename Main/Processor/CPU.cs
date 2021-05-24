@@ -13,7 +13,7 @@ namespace FoenixIDE.Processor
     {
         const int BANKSIZE = 0x10000;
         const int PAGESIZE = 0x100;
-        private OpcodeList opcodes = null;
+        private readonly OpcodeList opcodes = null;
 
         public OpCode CurrentOpcode = null;
         public int SignatureBytes = 0;

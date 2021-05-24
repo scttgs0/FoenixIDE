@@ -5,7 +5,7 @@ namespace FoenixIDE.Simulator.Devices
 {
     public class TimerRegister : MemoryLocations.MemoryRAM
     {
-        private MultimediaTimer hiresTimer = null;
+        private readonly MultimediaTimer hiresTimer = null;
 
         public delegate void RaiseInterruptFunction();
         public RaiseInterruptFunction TimerInterruptDelegate;

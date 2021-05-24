@@ -18,10 +18,10 @@ namespace FoenixIDE.Simulator.UI
 
         private MemoryManager MemMgr;
 
-        private Pen whitePen = new(Color.White);
-        private Pen yellowPen = new(Color.Yellow);
-        private Pen redPen = new(Color.Red);
-        private Brush whiteBrush = new SolidBrush(Color.White);
+        private readonly Pen whitePen = new(Color.White);
+        private readonly Pen yellowPen = new(Color.Yellow);
+        private readonly Pen redPen = new(Color.Red);
+        private readonly Brush whiteBrush = new SolidBrush(Color.White);
 
         public TileEditor()
         {

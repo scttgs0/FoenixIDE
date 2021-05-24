@@ -42,17 +42,17 @@ namespace FoenixIDE.Display
         public const int BLINK_RATE = 30;
 
         // To provide a better contrast when writing on top of bitmaps
-        Brush BackgroundTextBrush = new SolidBrush(Color.Black);
-        Brush TextBrush = new SolidBrush(Color.LightBlue);
-        Brush BorderBrush = new SolidBrush(Color.LightBlue);
-        Brush InvertedBrush = new SolidBrush(Color.Blue);
-        Brush CursorBrush = new SolidBrush(Color.LightBlue);
+        readonly Brush BackgroundTextBrush = new SolidBrush(Color.Black);
+        readonly Brush TextBrush = new SolidBrush(Color.LightBlue);
+        readonly Brush BorderBrush = new SolidBrush(Color.LightBlue);
+        readonly Brush InvertedBrush = new SolidBrush(Color.Blue);
+        readonly Brush CursorBrush = new SolidBrush(Color.LightBlue);
 
         //Timer gpuRefreshTimer = new Timer
         //{
         //    Interval = 15
         //};
-        private MultimediaTimer hiresTimer = new(16);
+        private readonly MultimediaTimer hiresTimer = new(16);
         private int[] lutCache;
 
         public Gpu()
@@ -136,7 +136,7 @@ namespace FoenixIDE.Display
         }
 
         const int STRIDE = 800;
-        Bitmap frameBuffer = new(STRIDE, 600, PixelFormat.Format32bppArgb);
+        readonly Bitmap frameBuffer = new(STRIDE, 600, PixelFormat.Format32bppArgb);
         private bool drawing = false;
         byte[] pixVals = null;
 

@@ -9,7 +9,7 @@ namespace FoenixIDE.Simulator.FileFormat
     /// </summary>
     public class ListFile
     {
-        private SortedList<int, DebugLine> DbgLines = new();
+        private readonly SortedList<int, DebugLine> DbgLines = new();
 
         internal SortedList<int, DebugLine> Lines
         {

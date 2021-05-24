@@ -8,16 +8,14 @@ namespace FoenixIDE.CharEditor
     public partial class CharViewer : UserControl
     {
         const int CHARSET_SIZE = 2048;
-
-        Brush textBrush = Brushes.LightGray;  //new SolidBrush(SystemColors.WindowText);
-        Brush selectedBrush = Brushes.Gray;
-        Pen pen = Pens.Gray;
+        readonly Brush textBrush = Brushes.LightGray;  //new SolidBrush(SystemColors.WindowText);
+        readonly Brush selectedBrush = Brushes.Gray;
+        readonly Pen pen = Pens.Gray;
 
         public int BitsPerRow = 8;
         public int BytesPerCharacter = 8;
-
-        int Columns = 16;
-        int Rows = 16;
+        readonly int Columns = 16;
+        readonly int Rows = 16;
         int Col1X = 28;
         int Row1Y = 28;
         int CharacterWidth = 12;

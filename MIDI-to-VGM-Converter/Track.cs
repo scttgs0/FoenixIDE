@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MIDI_to_VGM_Converter
 {
@@ -45,14 +42,14 @@ namespace MIDI_to_VGM_Converter
         // we have 18 single voice (2 ops) channels or 6 double-voice (4 ops) + 6 single-voice (2 ops) channels - so use channels cautiously.
         // I need to write an algorithm to pick the correct channels - don't let MIDI do this
         // For example, channel 10 in MIDI is usually a rythm track (drums)
-        public byte midiChannel = 0;  
+        public byte midiChannel = 0;
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("I:").Append(index).Append(" D:").Append(deltaTime).Append(" W:").Append(wait);
             sb.Append(" T:").Append(type).Append(" C:").Append(midiChannel);
-            switch(type)
+            switch (type)
             {
                 case METype.progchange:
                     sb.Append(" P:").Append(program);
@@ -66,7 +63,7 @@ namespace MIDI_to_VGM_Converter
         }
 
         // We're mapping channels to use the drums
-        private readonly byte[] channelToOperatorOffset = { 0, 1, 2, 8, 9, 0xA, 0x10, 0x11, 0x12};
+        private readonly byte[] channelToOperatorOffset = { 0, 1, 2, 8, 9, 0xA, 0x10, 0x11, 0x12 };
         public byte[] GetBytes()
         {
             byte[] buffer = null;
@@ -88,7 +85,7 @@ namespace MIDI_to_VGM_Converter
                             // operator 1
                             byte addr1 = 0x20;
                             byte addr2 = 0x28;
-                            Array.Copy(new byte[3] { baseReg, (byte)(addr1 + channelToOperatorOffset[oplChnl % 9]), gmData[4] }, 0, buffer, 0, 3);  
+                            Array.Copy(new byte[3] { baseReg, (byte)(addr1 + channelToOperatorOffset[oplChnl % 9]), gmData[4] }, 0, buffer, 0, 3);
                             Array.Copy(new byte[3] { baseReg, (byte)(addr1 + 0x40 + channelToOperatorOffset[oplChnl % 9]), gmData[5] }, 0, buffer, 3, 3);
                             Array.Copy(new byte[3] { baseReg, (byte)(addr1 + 0x60 + channelToOperatorOffset[oplChnl % 9]), gmData[6] }, 0, buffer, 6, 3);
                             Array.Copy(new byte[3] { baseReg, (byte)(addr1 + 0xC0 + channelToOperatorOffset[oplChnl % 9]), gmData[7] }, 0, buffer, 9, 3);
@@ -135,7 +132,7 @@ namespace MIDI_to_VGM_Converter
                         break;
                     case METype.noteon:
 
-                        if (midiChannel == 9 && MainForm.PercussionSet != 0 )
+                        if (midiChannel == 9 && MainForm.PercussionSet != 0)
                         {
                             buffer = new byte[6];
                             bool BD = (note == 35) | (note == 36);
@@ -254,7 +251,7 @@ namespace MIDI_to_VGM_Converter
         {
             byte[] buffer = new byte[2];
             byte octave = (byte)((((note - 1) / 12 - 1) << 2) & 0x1C);
-            int offset = (note -1) % 12;
+            int offset = (note - 1) % 12;
             ushort val = noteFNumbers[offset];
             buffer[0] = (byte)(val & 0xFF);
             buffer[1] = (byte)((val >> 8) | octave);

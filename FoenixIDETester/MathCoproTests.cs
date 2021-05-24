@@ -1,11 +1,6 @@
 ﻿using FoenixIDE.MemoryLocations;
 using FoenixIDE.Simulator.Devices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoenixIDETester
 {
@@ -49,7 +44,7 @@ namespace FoenixIDETester
             copro.WriteWord(0x12, 6300);
             int quotient = copro.ReadWord(0x14);
             int remainder = copro.ReadWord(0x16);
-            
+
             Assert.AreEqual(6300 / 2600, quotient);
             Assert.AreEqual(6300 % 2600, remainder);
         }

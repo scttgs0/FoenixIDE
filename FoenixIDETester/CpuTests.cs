@@ -1,7 +1,5 @@
-﻿using System;
-using FoenixIDE.MemoryLocations;
+﻿using FoenixIDE.MemoryLocations;
 using FoenixIDE.Processor;
-using FoenixIDE.Simulator.Devices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 /*

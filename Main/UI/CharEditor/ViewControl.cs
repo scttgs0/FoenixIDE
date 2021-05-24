@@ -66,19 +66,16 @@ namespace FoenixIDE.CharEditor
                 throw new Exception("Not a bitmap file");
 
             int pos = 0;
-            int x = 0;
-            int y = 32;
-            int bit = 128;
-            int row = 0;
-
+            int y;
             for (y = 0; y < img.Height; y += BytesPerCharacter)
             {
+                int x;
                 for (x = 0; x < img.Width; x += 8)
                 {
                     for (int cy = y; cy < y + BytesPerCharacter; cy++)
                     {
-                        row = 0;
-                        bit = 128;
+                        int row = 0;
+                        int bit = 128;
                         for (int cx = x; cx < x + 8; cx++)
                         {
 
@@ -150,10 +147,6 @@ namespace FoenixIDE.CharEditor
             }
 
             int characters = FontData.Length / BytesPerCharacter;
-            int x0 = StartX;
-            int x = x0;
-            int y0 = StartY;
-            int y = y0;
             int bitWidth = 2;
             int bitHeight = 2;
             CharacterWidth = bitWidth * 8 + 4;
@@ -171,8 +164,8 @@ namespace FoenixIDE.CharEditor
                 e.Graphics.DrawString(SelectedIndex.ToString(), this.Font, textBrush, 0, 0);
             }
 
-            x = Col1X;
-            y = StartY;
+            int x = Col1X;
+            int y = StartY;
             for (int i = 0; i < Columns; i++)
             {
                 e.Graphics.DrawLine(pen, x - 2, Row1Y - 4, x - 2, lastRow);
@@ -195,8 +188,7 @@ namespace FoenixIDE.CharEditor
             y = Row1Y;
             for (int i = 0; i < characters; i++)
             {
-                x0 = x;
-                y0 = y;
+                int x0 = x;
                 if (i >= SelectedIndex && i < SelectedIndex + SelectionLength)
                 {
                     e.Graphics.FillRectangle(selectedBrush, x - 2, y - 2, CharacterWidth, CharacterHeight);

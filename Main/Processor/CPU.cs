@@ -433,12 +433,12 @@ namespace FoenixIDE.Processor
             }
 
             Push(Flags);
-
-            int addr = 0;
-            int emuAddr = 0;
             Flags.IrqDisable = true;
             Flags.Decimal = false;
 
+
+            int addr;
+            int emuAddr;
             switch (T)
             {
                 case InteruptTypes.BRK:

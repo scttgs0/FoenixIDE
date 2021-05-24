@@ -27,15 +27,9 @@
             // If the Enable and Transfer bits are set then do the transfer
             if ((Address == 0 || Address == 0x20) && (Value & 0x81) == 0x81)
             {
-                MemoryLocations.MemoryRAM srcMemory = null;
-                MemoryLocations.MemoryRAM destMemory = null;
-                int srcAddr = 0;
-                int destAddr = 0;
                 bool isSystemSource = (Value & 0x10) != 0;
                 bool isSystemDest = (Value & 0x20) != 0;
                 bool isFillTransfer = (Value & 4) != 0;
-                bool isSrcTransfer2D = false;
-                bool isDestTransfer2D = false;
 
                 // Setup variables
                 int sizeSrcX = isSystemSource ? ReadWord(0x28) : ReadWord(8); // Max 65535
@@ -50,6 +44,9 @@
                 destStride = destStride == 0 ? sizeSrcX : destStride;
 
 
+                MemoryLocations.MemoryRAM srcMemory;
+                int srcAddr;
+                bool isSrcTransfer2D;
                 // Check if the source is system or video
                 if (isSystemSource)
                 {
@@ -63,6 +60,10 @@
                     srcAddr = ReadLong(2); // Address $AF:0402
                     isSrcTransfer2D = (ReadByte(0) & 2) != 0;
                 }
+
+                MemoryLocations.MemoryRAM destMemory;
+                int destAddr;
+                bool isDestTransfer2D;
                 if (isSystemDest)
                 {
                     destMemory = System;
@@ -100,9 +101,6 @@
                         {
                             for (int x = 0; x < sizeDestX; x++)
                             {
-                                int srcPos = x + y * srcStride;
-                                int destY = srcPos / sizeDestX;
-                                int destX = srcPos % sizeDestX;
                                 destMemory.WriteByte(destAddr + x + y * destStride, transferByte);
                             }
                         }

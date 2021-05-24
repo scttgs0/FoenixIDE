@@ -247,7 +247,7 @@ namespace MIDI_to_VGM_Converter
         {
             int len = 0;
             int value = 0;
-            bool done = false;
+            bool done;
             do
             {
                 value = (value << 7) + (buffer[ptr + len] & 0x7F);
@@ -453,8 +453,6 @@ namespace MIDI_to_VGM_Converter
                     varlen = 2;
                     break;
                 case 0xB:
-                    byte ctrlr = buffer[ptr + 1];
-                    byte value = buffer[ptr + 2];
                     sb.AppendFormat("Control  Channel: {0,2}, Note: {1,3}, Velocity: {2,3}", channel, note, velocity).AppendLine();
                     varlen = 2;
                     break;
@@ -589,7 +587,6 @@ namespace MIDI_to_VGM_Converter
                 availableChannels.Remove(top);
             }
             byte OPL3Mode = (byte)(fourOps != 0 ? 1 : 0);
-            byte connectionSel = (byte)(Math.Pow(2, fourOps) -1);
             
             int totalWaits = 0;
             int totalBytes = 0;

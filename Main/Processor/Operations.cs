@@ -257,8 +257,7 @@ namespace FoenixIDE.Processor
         /// <returns></returns>
         private int GetIndexed(int Address, Register bank, Register Index, int width)
         {
-            int addr = Address;
-            addr = bank.GetLongAddress(Address);
+            int addr = bank.GetLongAddress(Address);
             addr = addr + Index.Value;
             return (width == 1) ? cpu.MemMgr.ReadByte(addr) : cpu.MemMgr.ReadWord(addr);
         }
@@ -501,7 +500,7 @@ namespace FoenixIDE.Processor
 
         public void ExecuteBranch(byte instruction, AddressModes addressMode, int signature)
         {
-            bool takeBranch = false;
+            bool takeBranch;
             switch (instruction)
             {
                 case OpcodeList.BCC_ProgramCounterRelative:
@@ -592,9 +591,8 @@ namespace FoenixIDE.Processor
 
         public void ExecuteINCDEC(byte instruction, AddressModes addressMode, int signature)
         {
-            int bval = 0;
-            int addr = 0;
-
+            int addr;
+            int bval;
             switch (instruction)
             {
                 case OpcodeList.DEC_Accumulator:
@@ -675,8 +673,8 @@ namespace FoenixIDE.Processor
 
         private int GetAddress(AddressModes addressMode, int SignatureBytes, RegisterBankNumber Bank)
         {
-            int addr = 0;
-            int ptr = 0;
+            int addr;
+            int ptr;
             switch (addressMode)
             {
                 // The address will not be used in Immediate or Implied mode, but 
@@ -771,7 +769,7 @@ namespace FoenixIDE.Processor
 
         public void ExecuteTransfer(byte instruction, AddressModes addressMode, int signature)
         {
-            int transWidth = 0;
+            int transWidth;
             switch (instruction)
             {
                 // C - D - always 16-bit (except in emulation mode)
@@ -978,8 +976,6 @@ namespace FoenixIDE.Processor
 
             cpu.DataBank.Value = signature & 0xFF;
 
-            int bytesToMove = cpu.A.Value + 1;
-
             // For MVN, X and Y are incremented
             // For MVP, X and Y are decremented
             int dir = (instruction == OpcodeList.MVP_BlockMove) ? -1 : 1;
@@ -1000,7 +996,7 @@ namespace FoenixIDE.Processor
         public void ExecuteADC(byte instruction, AddressModes addressMode, int signature)
         {
             int val = GetValue(addressMode, signature, cpu.A.Width);
-            int nv = 0;
+            int nv;
             if (cpu.Flags.Decimal)
                 nv = HexVal(BCDVal(val) + BCDVal(cpu.A.Value) + cpu.Flags.CarryBit);
             else
@@ -1024,7 +1020,7 @@ namespace FoenixIDE.Processor
         public void ExecuteSBC(byte instruction, AddressModes addressMode, int signature)
         {
             int val = GetValue(addressMode, signature, cpu.A.Width);
-            int nv = 0;
+            int nv;
             if (cpu.Flags.Decimal)
                 nv = HexVal(BCDVal(cpu.A.Value) - BCDVal(val + 1) + cpu.Flags.CarryBit);
             else

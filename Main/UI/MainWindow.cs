@@ -288,7 +288,6 @@ namespace FoenixIDE.UI
         {
             // Check if the interrupt is enabled
             DateTime currentDT = DateTime.Now;
-            TimeSpan ts = currentDT - pSof;
             //System.Console.WriteLine(ts.TotalMilliseconds);
             pSof = currentDT;
             byte mask = kernel.MemMgr.ReadByte(MemoryLocations.MemoryMap.INT_MASK_REG0);

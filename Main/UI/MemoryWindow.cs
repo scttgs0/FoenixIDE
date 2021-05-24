@@ -201,11 +201,10 @@ namespace FoenixIDE.UI
 
         private void FindMatchedDropDownEntry(int address)
         { // find the address in the dropdown list
-            int dropdownAddress = 0;
             bool matched = false;
             foreach (string item in AddressCombo.Items)
             {
-                dropdownAddress = 0;
+                int dropdownAddress = 0;
                 if (item.StartsWith("Bank"))
                 {
                     int start = item.IndexOf('$');
@@ -253,7 +252,7 @@ namespace FoenixIDE.UI
         private void AddressCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             String value = (String)AddressCombo.SelectedItem;
-            int startAddress = 0;
+            int startAddress;
             if (value.StartsWith("Bank"))
             {
                 // Read two characters and pad with '0000' to get a 24 bit address

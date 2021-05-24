@@ -76,7 +76,7 @@ namespace FoenixIDE.UI
 
         private int GetTransmissionSize()
         {
-            int transmissionSize = -1;
+            int transmissionSize;
             if (SendFileRadio.Checked)
             {
                 GetFileLength(FileNameTextBox.Text);

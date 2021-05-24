@@ -139,7 +139,6 @@ namespace FoenixIDE.UI
             //if ((kernel.CPU.DebugPause))
             if (kernel.CPU.DebugPause && codeList != null)
             {
-                int queueLength = codeList.Count;
                 int painted = 0;
                 int index = 0;
 
@@ -882,9 +881,9 @@ namespace FoenixIDE.UI
                 return true;
             }
             //Read Interrupt Register 2
-            byte reg2 = kernel.MemMgr.INTERRUPT.ReadByte(2);
+            _ = kernel.MemMgr.INTERRUPT.ReadByte(2);
             //Read Interrupt Register 3
-            byte reg3 = kernel.MemMgr.INTERRUPT.ReadByte(3);
+            _ = kernel.MemMgr.INTERRUPT.ReadByte(3);
             return false;
         }
 

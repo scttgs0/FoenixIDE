@@ -191,7 +191,7 @@ namespace MIDI_to_VGM_Converter
                         break;
                     case METype.noteoff:
                         buffer = new byte[3];
-                        byte[] offFreq = GetFreq(note);
+                        _ = GetFreq(note);
                         if (midiChannel == 9 && MainForm.PercussionSet != 0)
                         {
                             bool BD = (note == 35) | (note == 36);

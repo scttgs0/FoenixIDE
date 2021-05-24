@@ -29,7 +29,7 @@ namespace FoenixIDE.Simulator.Devices
         {
             byte CTRL0 = inputData[0];
             byte CTRL1 = (byte)(inputData[1] & 3);
-            float input0 = 0, input1 = 0;
+            float input0;
             if ((CTRL0 & 1) != 0)
             {
                 uint raw = BitConverter.ToUInt32(inputData, 8);
@@ -39,6 +39,7 @@ namespace FoenixIDE.Simulator.Devices
             {
                 input0 = BitConverter.ToSingle(inputData, 8);
             }
+            float input1;
             if ((CTRL0 & 2) != 0)
             {
                 uint raw = BitConverter.ToUInt32(inputData, 12);

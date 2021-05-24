@@ -301,8 +301,8 @@ namespace FoenixIDE.Simulator.Devices
                     {
                         sectors_per_cluster = firstSector[0xD];
                         int reserved_sectors = firstSector[0xE] + (firstSector[0xF] << 8);
-                        int numberOfFATs = firstSector[0x10]; // should be 2
-                        int maxNumberOfRootEntries = firstSector[0x11] + (firstSector[0x12] << 8);
+                        // int numberOfFATs = firstSector[0x10]; // should be 2
+                        // int maxNumberOfRootEntries = firstSector[0x11] + (firstSector[0x12] << 8);
                         byte sectors_per_fat = firstSector[0x16];
                         int small_sectors = firstSector[0x13] + (firstSector[0x14] << 8);
                         int large_sectors = firstSector[0x20] + (firstSector[0x21] << 8) + (firstSector[0x22] << 16) + (firstSector[0x23] << 24);

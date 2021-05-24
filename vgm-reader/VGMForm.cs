@@ -84,7 +84,6 @@ namespace vgm_reader
             // confirm that the first 4 bytes contain "Vgm "
             if (buffer[0] == 'V' && buffer[1] == 'g' && buffer[2] == 'm' && buffer[3] == ' ' && buffer[9] == 1)
             {
-                byte ver_maj = buffer[9];
                 byte ver_min = buffer[8];
                 int startSongOffset = (ver_min < 50) ? 0x40 : buffer[0x34] + buffer[0x35] * 256 + 0x34;
                 data_stream_count = 0;
@@ -93,12 +92,12 @@ namespace vgm_reader
                 // read the commands
                 int ptr = startSongOffset;
                 StringBuilder sb = new();
-                byte reg = 0;
-                byte val = 0;
-                int wait = 0;
-                while (!endOfSong&& ptr < buffer.Length)
+                while (!endOfSong && ptr < buffer.Length)
                 {
                     byte command = buffer[ptr++];
+                    byte reg;
+                    byte val;
+                    int wait;
                     switch ((command & 0xF0) >> 4)
                     {
                         case 4:
@@ -158,7 +157,7 @@ namespace vgm_reader
                                 case (byte)VGM_Commands.DATABANK:
                                     //remember the databank positions
                                     ptr++; // this byte is always 66
-                                    byte stream_type = buffer[ptr++];
+                                    _ = buffer[ptr++];
                                     int stream_size = buffer[ptr] + buffer[ptr + 1] * 256 + buffer[ptr + 2] * 256 * 256 + buffer[ptr + 3] * 256 * 256 * 256;
                                     data_streams.Add(ptr + 4);
                                     ptr += stream_size + 4;
@@ -209,17 +208,17 @@ namespace vgm_reader
                             {
                                 case 0xb2:
                                     // ad dd
-                                    
+
                                     int sample = (reg & 0xF) * 256 + val;
                                     reg = (byte)((reg & 0xF0) >> 4);
                                     sb.Append("PWM[" + reg.ToString("X1") + "]:" + sample.ToString("X3") + " ");
                                     break;
                                 default:
-                                    
+
                                     sb.Append("2BC{" + command.ToString("X2") + "}[" + reg.ToString("X2") + "]:" + val.ToString("X2") + " ");
                                     break;
                             }
-                            
+
                             break;
                         case 0xc:
                             int addr = buffer[ptr] + buffer[ptr + 1] * 256;
@@ -237,12 +236,12 @@ namespace vgm_reader
                             break;
                         case 0xe:
                             // 4 bytes
-                            int offset = buffer[ptr] + buffer[ptr + 1] * 256 + buffer[ptr+2] * 256 * 256 + buffer[ptr + 3] * 256 * 256 * 256;
+                            int offset = buffer[ptr] + buffer[ptr + 1] * 256 + buffer[ptr + 2] * 256 * 256 + buffer[ptr + 3] * 256 * 256 * 256;
                             ptr += 4;
                             if (command == 0xE0)
                             {
                                 sb.Append("PCM DBO:" + offset.ToString("X8") + " ");
-                            } 
+                            }
                             else
                             {
                                 sb.Append("4BC{" + command.ToString("X2") + "}:" + offset.ToString("X8") + " ");
@@ -323,7 +322,7 @@ namespace vgm_reader
             if ((value & 0x80) == 0x80)
             {
                 int channelValue = (value & 0x60) >> 5;
-                string channel = "";
+                string channel;
                 if (channelValue == 3)
                 {
                     channel = "N";

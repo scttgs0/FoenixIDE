@@ -31,7 +31,7 @@ namespace FoenixIDE
 
         private static Dictionary<String, String> DecodeProgramArguments(string[] args)
         {
-            Dictionary<string, string> context = new Dictionary<string, string>
+            Dictionary<string, string> context = new()
             {
                 { "Continue", "true" }
             };

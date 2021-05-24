@@ -846,7 +846,7 @@ namespace FoenixIDE.Processor
 
         public void ExecuteJumpReturn(byte instruction, AddressModes addressMode, int signature)
         {
-            RegisterBankNumber fakeBank = new RegisterBankNumber
+            RegisterBankNumber fakeBank = new()
             {
                 Value = cpu.PC >> 16
             };

@@ -18,9 +18,9 @@ namespace FoenixIDE.Simulator.UI
 
         private MemoryManager MemMgr;
 
-        private Pen whitePen = new Pen(Color.White);
-        private Pen yellowPen = new Pen(Color.Yellow);
-        private Pen redPen = new Pen(Color.Red);
+        private Pen whitePen = new(Color.White);
+        private Pen yellowPen = new(Color.Yellow);
+        private Pen redPen = new(Color.Red);
         private Brush whiteBrush = new SolidBrush(Color.White);
 
         public TileEditor()
@@ -74,8 +74,8 @@ namespace FoenixIDE.Simulator.UI
         private void TilesetViewer_Paint(object sender, PaintEventArgs e)
         {
             // Read the memory and display the tiles
-            Rectangle rect = new Rectangle(0, 0, 16 * 17 + 1, 16 * 17 + 1);
-            Bitmap frameBuffer = new Bitmap(16 * 17 + 1, 16 * 17 + 1, PixelFormat.Format32bppArgb);
+            Rectangle rect = new(0, 0, 16 * 17 + 1, 16 * 17 + 1);
+            Bitmap frameBuffer = new(16 * 17 + 1, 16 * 17 + 1, PixelFormat.Format32bppArgb);
             BitmapData bitmapData = frameBuffer.LockBits(rect, ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
             IntPtr p = bitmapData.Scan0;
             int stride = bitmapData.Stride;
@@ -197,7 +197,7 @@ namespace FoenixIDE.Simulator.UI
 
         private void SaveTilemapButton_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveDialog = new SaveFileDialog()
+            SaveFileDialog saveDialog = new()
             {
                 Title = "Save Tilemap File",
                 CheckPathExists = true,

@@ -46,7 +46,7 @@ namespace MIDI_to_VGM_Converter
 
         private void ReadFileButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog
+            OpenFileDialog dialog = new()
             {
                 Filter = "MIDI Files (*.mid *.midi)| *.mid;*.midi"
             };
@@ -55,7 +55,7 @@ namespace MIDI_to_VGM_Converter
                 RunningStatus = 0;
                 events = new List<MidiEvent>();
                 FileLabel.Text = dialog.FileName;
-                FileInfo info = new FileInfo(dialog.FileName);
+                FileInfo info = new(dialog.FileName);
                 int fileLength = (int)info.Length;
                 Stream file = dialog.OpenFile();
 
@@ -190,7 +190,7 @@ namespace MIDI_to_VGM_Converter
                 totalTime += deltatime;
                 
 
-                MidiEvent ev = new MidiEvent()
+                MidiEvent ev = new()
                 {
                     deltaTime = deltatime,
                     wait = samplesPerTick * deltatime,
@@ -318,7 +318,7 @@ namespace MIDI_to_VGM_Converter
                     sb.Append("Set SMPTE Offset Event: ").Append(SMPTEOffset.ToString());
                     break;
                 case 0x58:
-                    TimeSignature ts = new TimeSignature()
+                    TimeSignature ts = new()
                     {
                         numerator = buffer[ptr],
                         denominator = buffer[ptr + 1],
@@ -396,7 +396,7 @@ namespace MIDI_to_VGM_Converter
 
         private string ReadText(int ptr, int length)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             int offset = 0;
             while (offset < length)
             {
@@ -408,7 +408,7 @@ namespace MIDI_to_VGM_Converter
 
         private string ReadBinary(int ptr, int length)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             int offset = 0;
             while (offset < length)
             {
@@ -498,12 +498,12 @@ namespace MIDI_to_VGM_Converter
             // Print all events
             events.Sort(new MidiEventComparer());
 
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
 
             // First pass - map midi channels to OPL3 channels
             byte fourOps = 0;
             byte twoOps = 0;
-            List<byte> availableChannels = new List<byte>();
+            List<byte> availableChannels = new();
             availableChannels.Add(0);
             availableChannels.Add(1);
             availableChannels.Add(2);
@@ -593,7 +593,7 @@ namespace MIDI_to_VGM_Converter
             
             int totalWaits = 0;
             int totalBytes = 0;
-            MemoryStream ms = new MemoryStream();
+            MemoryStream ms = new();
             // set the machine in OPL3 mode - no timers
             byte[] initialRegister = {
                 0x5f, 5, OPL3Mode,     // OPL3 mode
@@ -679,7 +679,7 @@ namespace MIDI_to_VGM_Converter
             {
                 File.Delete(vgmFileName);
             }
-            FileStream stream = new FileStream(vgmFileName, FileMode.CreateNew);
+            FileStream stream = new(vgmFileName, FileMode.CreateNew);
             byte[] header = GetVGMHeader(totalWaits, totalBytes + 0x80, gd3.Length);
             stream.Write(header, 0, header.Length);
             // write data

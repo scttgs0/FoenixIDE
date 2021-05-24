@@ -73,7 +73,7 @@ namespace FoenixIDE.UI
          */
         private void BrowseFileButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDlg = new OpenFileDialog
+            OpenFileDialog openFileDlg = new()
             {
                 Title = "Load Bitmap",
                 DefaultExt = ".bin",
@@ -84,7 +84,7 @@ namespace FoenixIDE.UI
             if (openFileDlg.ShowDialog() == DialogResult.OK)
             {
                 FileNameTextBox.Text = openFileDlg.FileName;
-                FileInfo info = new FileInfo(FileNameTextBox.Text);
+                FileInfo info = new(FileNameTextBox.Text);
                 FileSizeResultLabel.Text = FormatAddress((int)info.Length);
                 StoreButton.Enabled = true;
             }
@@ -156,7 +156,7 @@ namespace FoenixIDE.UI
                 // TODO: set the position of the sprite
             }
 
-            ResourceChecker.Resource res = new ResourceChecker.Resource
+            ResourceChecker.Resource res = new()
             {
                 StartAddress = destAddress,
                 SourceFile = FileNameTextBox.Text,
@@ -250,7 +250,7 @@ namespace FoenixIDE.UI
          */
         private void TransformBitmap(byte[] data, int startOffset, int pixelDepth, int lutPointer, int videoPointer, int width, int height)
         {
-            List<int> lut = new List<int>(256)
+            List<int> lut = new(256)
             {
                 // Always add black and white
                 0,

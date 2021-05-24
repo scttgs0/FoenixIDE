@@ -24,20 +24,20 @@ namespace FoenixIDE.UI
         public UI.CPUWindow debugWindow;
         public MemoryWindow memoryWindow;
         public UploaderWindow uploaderWindow;
-        private WatchForm watchWindow = new WatchForm();
-        private SDCardWindow sdCardWindow = new SDCardWindow();
+        private WatchForm watchWindow = new();
+        private SDCardWindow sdCardWindow = new();
         private TileEditor tileEditor;
         private CharEditorWindow charEditor;
         public SerialTerminal terminal;
-        private JoystickForm joystickWindow = new JoystickForm();
-        private GameGeneratorForm GGF = new GameGeneratorForm();
+        private JoystickForm joystickWindow = new();
+        private GameGeneratorForm GGF = new();
 
         // Local variables and events
         private byte previousGraphicMode;
         private delegate void TileClickEvent(Point tile);
         public delegate void TileLoadedEvent(int layer);
         private TileClickEvent TileClicked;
-        private ResourceChecker ResChecker = new ResourceChecker();
+        private ResourceChecker ResChecker = new();
         private delegate void TransmitByteFunction(byte Value);
         private delegate void ShowFormFunction();
         private String defaultKernel = @"roms\kernel.hex";
@@ -274,7 +274,7 @@ namespace FoenixIDE.UI
          */
         private void LoadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BitmapLoader loader = new BitmapLoader
+            BitmapLoader loader = new()
             {
                 StartPosition = FormStartPosition.CenterParent,
                 Memory = kernel.CPU.MemMgr,
@@ -573,7 +573,7 @@ namespace FoenixIDE.UI
 
         private void MenuOpenHexFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog
+            OpenFileDialog dialog = new()
             {
                 Filter = "Hex Files|*.hex",
                 Title = "Select a Hex File",
@@ -590,7 +590,7 @@ namespace FoenixIDE.UI
          */
         private void LoadFNXMLFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog
+            OpenFileDialog dialog = new()
             {
                 Title = "Load Project File",
                 Filter = "Foenix Project File|*.fnxml",
@@ -618,7 +618,7 @@ namespace FoenixIDE.UI
         private void SaveProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Pick the file to create
-            SaveFileDialog dialog = new SaveFileDialog
+            SaveFileDialog dialog = new()
             {
                 Title = "Save Project File",
                 CheckPathExists = true,
@@ -627,7 +627,7 @@ namespace FoenixIDE.UI
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                FoeniXmlFile fnxml = new FoeniXmlFile(kernel, ResChecker);
+                FoeniXmlFile fnxml = new(kernel, ResChecker);
                 fnxml.Write(dialog.FileName, true);
             }
         }
@@ -635,7 +635,7 @@ namespace FoenixIDE.UI
         private void SaveWatchListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Pick the file to create
-            SaveFileDialog dialog = new SaveFileDialog
+            SaveFileDialog dialog = new()
             {
                 Title = "Save Watch List File",
                 CheckPathExists = true,
@@ -644,14 +644,14 @@ namespace FoenixIDE.UI
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                FoeniXmlFile xmlFile = new FoeniXmlFile(kernel, null);
+                FoeniXmlFile xmlFile = new(kernel, null);
                 xmlFile.WriteWatches(dialog.FileName);
             }
         }
 
         private void LoadWatchListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog
+            OpenFileDialog dialog = new()
             {
                 Title = "Load Watch List File",
                 Filter = "Foenix Watch List File|*.wlxml",
@@ -659,7 +659,7 @@ namespace FoenixIDE.UI
             };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                FoeniXmlFile xmlFile = new FoeniXmlFile(kernel, null);
+                FoeniXmlFile xmlFile = new(kernel, null);
                 xmlFile.ReadWatches(dialog.FileName);
                 watchWindow.SetKernel(kernel);
                 if (!watchWindow.Visible)
@@ -671,7 +671,7 @@ namespace FoenixIDE.UI
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AboutForm about = new AboutForm();
+            AboutForm about = new();
             about.ShowDialog();
         }
 
@@ -1052,7 +1052,7 @@ namespace FoenixIDE.UI
             string[] obj = (string[])e.Data.GetData("FileName");
             if (obj != null && obj.Length > 0)
             {
-                FileInfo info = new FileInfo(obj[0]);
+                FileInfo info = new(obj[0]);
                 if (info.Extension.ToUpper().Equals(".HEX"))
                 {
                     e.Effect = DragDropEffects.Copy;
@@ -1067,7 +1067,7 @@ namespace FoenixIDE.UI
             string[] obj = (string[])e.Data.GetData("FileName");
             if (obj != null && obj.Length > 0)
             {
-                FileInfo info = new FileInfo(obj[0]);
+                FileInfo info = new(obj[0]);
                 if (info.Extension.ToUpper().Equals(".HEX"))
                 {
                     LoadHexFile(obj[0]);
@@ -1079,7 +1079,7 @@ namespace FoenixIDE.UI
         // Header is PGX,1,4 byte jump address
         private void ConvertHexToPGXToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog
+            OpenFileDialog dialog = new()
             {
                 Filter = "Hex Files|*.hex",
                 Title = "Select a Hex File",
@@ -1087,14 +1087,14 @@ namespace FoenixIDE.UI
             };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                MemoryRAM temporaryRAM = new MemoryRAM(0, 4 * 1024 * 1024);
+                MemoryRAM temporaryRAM = new(0, 4 * 1024 * 1024);
                 HexFile.Load(temporaryRAM, dialog.FileName, 0, out int DataStartAddress, out int DataLength);
                 // write the file
                 string outputFileName = Path.ChangeExtension(dialog.FileName, "PGX");
 
                 byte[] buffer = new byte[DataLength];
                 temporaryRAM.CopyIntoBuffer(DataStartAddress, buffer, 0, DataLength);
-                using (BinaryWriter writer = new BinaryWriter(File.Open(outputFileName, FileMode.Create)))
+                using (BinaryWriter writer = new(File.Open(outputFileName, FileMode.Create)))
                 {
                     // 8 byte header
                     writer.Write((byte)'P');
@@ -1109,7 +1109,7 @@ namespace FoenixIDE.UI
 
         private void ConvertBinToPGXToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog
+            OpenFileDialog dialog = new()
             {
                 Filter = "Bin Files|*.bin",
                 Title = "Select a Bin File",
@@ -1125,7 +1125,7 @@ namespace FoenixIDE.UI
                     // write the file
                     int DataStartAddress = Convert.ToInt32(StrAddress, 16);
                     string outputFileName = Path.ChangeExtension(dialog.FileName, "PGX");
-                    using (BinaryWriter writer = new BinaryWriter(File.Open(outputFileName, FileMode.Create)))
+                    using (BinaryWriter writer = new(File.Open(outputFileName, FileMode.Create)))
                     {
                         // 8 byte header
                         writer.Write((byte)'P');
@@ -1170,7 +1170,7 @@ namespace FoenixIDE.UI
         private void CheckForUpdateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string URL = "https://api.github.com/repos/Trinity-11/FoenixIDE/releases";
-            HttpClient client = new HttpClient();
+            HttpClient client = new();
 
             String version = AboutForm.AppVersion();
             int appVersion = VersionValue(version);

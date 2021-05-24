@@ -62,7 +62,7 @@ namespace FoenixIDE.Simulator.FileFormat
         {
             if (evaled == null)
             {
-                StringBuilder c = new StringBuilder();
+                StringBuilder c = new();
                 for (int i = 0; i < 4; i++)
                 {
                     if (i < commandLength)
@@ -101,7 +101,7 @@ namespace FoenixIDE.Simulator.FileFormat
         }
         public string GetOpcodes()
         {
-            StringBuilder c = new StringBuilder();
+            StringBuilder c = new();
             for (int i = 0; i < commandLength; i++)
             {
                 c.Append(command[i].ToString("X2")).Append(",");

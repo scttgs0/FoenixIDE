@@ -28,7 +28,7 @@ namespace FoenixIDE.UI
         private int IRQPC = 0; // we only keep track of a single interrupt
         private int TopLineIndex = 0; // this is to help us track which line is the current one being executed
 
-        Point position = new Point();
+        Point position = new();
         private int MemoryLimit = 0;
 
         public CPUWindow()
@@ -699,7 +699,7 @@ namespace FoenixIDE.UI
             }
             string opcodes = oc.ToString(kernel.CPU.ReadSignature(ocLength, pc));
             //string status = "";
-            DebugLine line = new DebugLine(pc);
+            DebugLine line = new(pc);
             line.SetOpcodes(command);
             line.SetMnemonic(opcodes);
             if (!lastLine.InvokeRequired)
@@ -908,7 +908,7 @@ namespace FoenixIDE.UI
                 {
                     string name = line.GetAddressName();
                     int address = line.GetAddress();
-                    WatchedMemory mem = new WatchedMemory(name, address, 0, 0);
+                    WatchedMemory mem = new(name, address, 0, 0);
                     if (kernel.WatchList.ContainsKey(address))
                     {
                         kernel.WatchList.Remove(address);

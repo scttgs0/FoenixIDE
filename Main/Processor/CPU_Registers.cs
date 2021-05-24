@@ -7,15 +7,15 @@ namespace FoenixIDE.Processor
         /// <summary>
         /// Accumulator
         /// </summary>
-        public RegisterAccumulator A = new RegisterAccumulator();
+        public RegisterAccumulator A = new();
         /// <summary>
         /// Data Bank Register
         /// </summary>
-        public RegisterBankNumber DataBank = new RegisterBankNumber();
+        public RegisterBankNumber DataBank = new();
         /// <summary>
         /// Direct Page Register
         /// </summary>
-        public RegisterDirectPage DirectPage = new RegisterDirectPage();
+        public RegisterDirectPage DirectPage = new();
         /// <summary>
         /// Program Bank Register
         /// </summary>
@@ -28,19 +28,19 @@ namespace FoenixIDE.Processor
         /// <summary>
         /// Processor Status Register
         /// </summary>
-        public Flags Flags = new Flags();
+        public Flags Flags = new();
         /// <summary>
         /// Stack Pointer. The stack is always in the first 64KB page.
         /// </summary>
-        public Register16 Stack = new Register16();
+        public Register16 Stack = new();
         /// <summary>
         /// X Index Regiser
         /// </summary>
-        public Register X = new Register();
+        public Register X = new();
         /// <summary>
         /// Y Index Register
         /// </summary>
-        public Register Y = new Register();
+        public Register Y = new();
         /// <summary>
         /// Wait state. When Wait is true, the CPU will not exeucte instructions. It
         /// will service the IRQ, NMI, and ABORT lines. A hardware interrupt is required 

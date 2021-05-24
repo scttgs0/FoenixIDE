@@ -214,7 +214,7 @@ namespace FoenixIDE.Simulator.FileFormat
                     {
                         int address = Convert.ToInt32(reader.GetAttribute("address"), 16);
                         string name = reader.GetAttribute("label");
-                        WatchedMemory mem = new WatchedMemory(name, address, 0, 0);
+                        WatchedMemory mem = new(name, address, 0, 0);
                         if (watchList.ContainsKey(address))
                         {
                             watchList.Remove(address);
@@ -305,7 +305,7 @@ namespace FoenixIDE.Simulator.FileFormat
                     }
                     if (reader.Name.Equals("resource"))
                     {
-                        ResourceChecker.Resource res = new ResourceChecker.Resource
+                        ResourceChecker.Resource res = new()
                         {
                             Name = reader.GetAttribute("name"),
                             SourceFile = reader.GetAttribute("source"),
@@ -324,7 +324,7 @@ namespace FoenixIDE.Simulator.FileFormat
                             string label = reader.GetAttribute("label");
                             string source = reader.GetAttribute("source");
                             string command = reader.GetAttribute("command");
-                            DebugLine code = new DebugLine(address);
+                            DebugLine code = new(address);
                             code.SetLabel(label);
                             code.SetMnemonic(source);
                             code.SetOpcodes(command);
@@ -356,7 +356,7 @@ namespace FoenixIDE.Simulator.FileFormat
                     {
                         int address = Convert.ToInt32(reader.GetAttribute("address"), 16);
                         string name = reader.GetAttribute("label");
-                        WatchedMemory mem = new WatchedMemory(name, address, 0, 0);
+                        WatchedMemory mem = new(name, address, 0, 0);
                         if (watchList.ContainsKey(address))
                         {
                             watchList.Remove(address);

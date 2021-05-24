@@ -14,7 +14,7 @@ namespace FoenixIDE.UI
 
         private void LoadButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openDlg = new OpenFileDialog();
+            OpenFileDialog openDlg = new();
             openDlg.Title = "Pick a Foenix Game File to Open";
             openDlg.Filter = "FGM (*.fgm)|*.fgm";
             if (openDlg.ShowDialog() == DialogResult.OK)
@@ -28,7 +28,7 @@ namespace FoenixIDE.UI
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveDlg = new SaveFileDialog();
+            SaveFileDialog saveDlg = new();
             saveDlg.Title = "Pick a Foenix Game File to Save";
             saveDlg.Filter = "FGM (*.fgm)|*.fgm";
             if (saveDlg.ShowDialog() == DialogResult.OK)

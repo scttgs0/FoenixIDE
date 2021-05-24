@@ -78,7 +78,7 @@ namespace FoenixIDE.UI
         }
         public void RefreshMemoryView()
         {
-            StringBuilder s = new StringBuilder();
+            StringBuilder s = new();
             if (Memory == null)
                 return;
             //MemoryText.Clear();
@@ -96,7 +96,7 @@ namespace FoenixIDE.UI
                 }
 
                 s.Append("  ");
-                StringBuilder text = new StringBuilder();
+                StringBuilder text = new();
                 for (int j = 0; j < 16; j++)
                 {
                     if (i + j < Memory.Length)
@@ -397,7 +397,7 @@ namespace FoenixIDE.UI
             }
         }
 
-        Point mem = new Point(-1, -1);
+        Point mem = new(-1, -1);
         // Retrieve the memory location of the mouse location
         private void GetAddressPosition(Point mouse)
         {

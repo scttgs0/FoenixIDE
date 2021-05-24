@@ -60,14 +60,14 @@ namespace vgm_reader
 
         private void ReadFileButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog
+            OpenFileDialog dialog = new()
             {
                 Filter = "VGM Files | *.vgm"
             };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 FileLabel.Text = dialog.FileName;
-                FileInfo info = new FileInfo(dialog.FileName);
+                FileInfo info = new(dialog.FileName);
                 int fileLength = (int)info.Length;
                 Stream file = dialog.OpenFile();
 
@@ -92,7 +92,7 @@ namespace vgm_reader
                 bool endOfSong = false; // end of song is represented by byte $66
                 // read the commands
                 int ptr = startSongOffset;
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new();
                 byte reg = 0;
                 byte val = 0;
                 int wait = 0;

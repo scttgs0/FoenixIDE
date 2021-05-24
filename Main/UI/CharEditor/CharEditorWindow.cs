@@ -13,7 +13,7 @@ namespace FoenixIDE.CharEditor
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog f = new SaveFileDialog
+            SaveFileDialog f = new()
             {
                 Filter = "ROM file|*.bin|PNG Image|*.png|BMP Image|*.bmp|All Files|*.*"
             };
@@ -37,7 +37,7 @@ namespace FoenixIDE.CharEditor
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog f = new OpenFileDialog
+            OpenFileDialog f = new()
             {
                 Filter = "Image Files (*.BMP *.PNG *.BIN)|*.BMP;*.PNG;*.BIN|ROM file|*.bin|PNG Image|*.png|BMP Image|*.bmp|All Files|*.*"
             };

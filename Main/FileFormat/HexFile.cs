@@ -17,7 +17,7 @@ namespace FoenixIDE.Simulator.FileFormat
 
             if (!System.IO.File.Exists(Filename))
             {
-                OpenFileDialog f = new OpenFileDialog
+                OpenFileDialog f = new()
                 {
                     Title = "Select a kernel file",
                     Filter = "Hex Files|*.hex|All Files|*.*"

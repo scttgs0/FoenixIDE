@@ -46,7 +46,7 @@ namespace FoenixIDE.CharEditor
             if (!System.IO.File.Exists(Filename))
                 return new byte[CHARSET_SIZE];
 
-            BinaryReader br = new System.IO.BinaryReader(new FileStream(Filename, FileMode.Open));
+            BinaryReader br = new(new FileStream(Filename, FileMode.Open));
             byte[] data = br.ReadBytes(CHARSET_SIZE);
 
             return data;
@@ -313,7 +313,7 @@ namespace FoenixIDE.CharEditor
 
         private void CharViewer_MouseMove(object sender, MouseEventArgs e)
         {
-            Point p = new Point
+            Point p = new()
             {
                 X = (e.X - Col1X) / CharacterWidth,
                 Y = (e.Y - Row1Y) / CharacterHeight
@@ -344,7 +344,7 @@ namespace FoenixIDE.CharEditor
             if (this.CharacterSelected == null)
                 return;
 
-            EventArgs e = new EventArgs();
+            EventArgs e = new();
             this.CharacterSelected(this, e);
         }
     }

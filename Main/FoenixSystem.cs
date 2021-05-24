@@ -12,10 +12,10 @@ namespace FoenixIDE
         public Processor.CPU CPU = null;
 
         public ResourceChecker Resources;
-        public Processor.Breakpoints Breakpoints = new Processor.Breakpoints();
+        public Processor.Breakpoints Breakpoints = new();
         public ListFile lstFile;
         private BoardVersion boardVersion;
-        public SortedList<int, WatchedMemory> WatchList = new SortedList<int, WatchedMemory>();
+        public SortedList<int, WatchedMemory> WatchList = new();
         private string LoadedKernel;
 
         public FoenixSystem(BoardVersion version, string DefaultKernel)
@@ -169,7 +169,7 @@ namespace FoenixIDE
             if (LoadedKernel.EndsWith(".fnxml", true, null))
             {
                 this.ResetMemory();
-                FoeniXmlFile fnxml = new FoeniXmlFile(this, Resources);
+                FoeniXmlFile fnxml = new(this, Resources);
                 fnxml.Load(LoadedKernel);
                 boardVersion = fnxml.Version;
             }
@@ -185,7 +185,7 @@ namespace FoenixIDE
                     else
                     {
                         // TODO: This results in lines of code to be shown in incorrect order - Fix
-                        ListFile tempList = new ListFile(LoadedKernel);
+                        ListFile tempList = new(LoadedKernel);
                         foreach (DebugLine line in tempList.Lines.Values)
                         {
                             if (lstFile.Lines.ContainsKey(line.PC))
@@ -210,7 +210,7 @@ namespace FoenixIDE
             }
 
             // See if lines of code exist in the 0x18_0000 to 0x18_FFFF block for RevB or 0x38_0000 to 0x38_FFFF block for Rev C
-            List<DebugLine> copiedLines = new List<DebugLine>();
+            List<DebugLine> copiedLines = new();
             if (lstFile.Lines.Count > 0)
             {
                 foreach (DebugLine line in lstFile.Lines.Values)

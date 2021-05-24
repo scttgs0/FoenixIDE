@@ -52,7 +52,7 @@ namespace FoenixIDE.Display
         //{
         //    Interval = 15
         //};
-        private MultimediaTimer hiresTimer = new MultimediaTimer(16);
+        private MultimediaTimer hiresTimer = new(16);
         private int[] lutCache;
 
         public Gpu()
@@ -116,7 +116,7 @@ namespace FoenixIDE.Display
         {
             byte MCRHigh = (byte)(VICKY.ReadByte(1) & 3); // Reading address $AF:0001
 
-            Point p = new Point(640, 480);
+            Point p = new(640, 480);
             switch (MCRHigh)
             {
                 case 1:
@@ -136,7 +136,7 @@ namespace FoenixIDE.Display
         }
 
         const int STRIDE = 800;
-        Bitmap frameBuffer = new Bitmap(STRIDE, 600, PixelFormat.Format32bppArgb);
+        Bitmap frameBuffer = new(STRIDE, 600, PixelFormat.Format32bppArgb);
         private bool drawing = false;
         byte[] pixVals = null;
 
@@ -243,7 +243,7 @@ namespace FoenixIDE.Display
             //}
 
             //Rectangle rect = new Rectangle(0, 0, resX, resY);
-            Rectangle rect = new Rectangle(0, 0, resX - 1, resY - 1);
+            Rectangle rect = new(0, 0, resX - 1, resY - 1);
             BitmapData bitmapData = frameBuffer.LockBits(rect, ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
             int* bitmapPointer = (int*)bitmapData.Scan0.ToPointer();
 
@@ -826,7 +826,7 @@ namespace FoenixIDE.Display
         /// <param name="Filename"></param>
         public void LoadFontSet(string Name, string Filename, int Offset, CharacterSet.CharTypeCodes CharType, CharacterSet.SizeCodes CharSize)
         {
-            CharacterSet cs = new CharacterSet();
+            CharacterSet cs = new();
             // Load the data from the file into the  IO buffer - starting at address $AF8000
             cs.Load(Filename, Offset, VICKY, MemoryLocations.MemoryMap.FONT0_MEMORY_BANK_START & 0xffff, CharSize);
         }

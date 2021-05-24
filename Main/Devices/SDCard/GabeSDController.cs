@@ -39,7 +39,7 @@ namespace FoenixIDE.Simulator.Devices
         private int DATA_SIZE = 0;
         private int logicalSectorSize = 512;
         byte sectors_per_cluster = 1;
-        private Dictionary<int, FileEntry> FAT = new Dictionary<int, FileEntry>();
+        private Dictionary<int, FileEntry> FAT = new();
         private string spaces = "        ";
         private bool mbrPresent = false;
         
@@ -542,7 +542,7 @@ namespace FoenixIDE.Simulator.Devices
             
             foreach (string dir in dirs)
             {
-                FileInfo info = new FileInfo(dir);
+                FileInfo info = new(dir);
                 string dirname = info.Name.Replace(" ", "").ToUpper();
                 if (dirname.Length < 8)
                 {
@@ -556,7 +556,7 @@ namespace FoenixIDE.Simulator.Devices
             foreach (string file in files)
             {
                 
-                FileInfo info = new FileInfo(file);
+                FileInfo info = new(file);
                 int size = (int)info.Length;
                 int clusters = size / logicalSectorSize;
                 string extension = info.Extension.Length > 0 ? info.Extension.ToUpper().Substring(1) : "";
@@ -586,7 +586,7 @@ namespace FoenixIDE.Simulator.Devices
                 {
                     extension += spaces.Substring(0, 3 - extension.Length);
                 }
-                FileEntry entry = new FileEntry()
+                FileEntry entry = new()
                 {
                     fqpn = file,
                     shortname = filename,
@@ -651,10 +651,10 @@ namespace FoenixIDE.Simulator.Devices
                         if (byte0 != 0xE5 && entry == voidEntry)
                         {
                             entry.size = size;
-                            FileInfo info = new FileInfo(entry.fqpn);
+                            FileInfo info = new(entry.fqpn);
                             string newFileName = info.DirectoryName + "\\" + name.Trim() + "." + ext.Trim();
-                            FileStream readStream = new FileStream(entry.fqpn, FileMode.Open, FileAccess.Read);
-                            FileStream writeStream = new FileStream(newFileName, FileMode.CreateNew);
+                            FileStream readStream = new(entry.fqpn, FileMode.Open, FileAccess.Read);
+                            FileStream writeStream = new(newFileName, FileMode.CreateNew);
                             try
                             {
                                 byte[] buffer = new byte[512];
@@ -930,7 +930,7 @@ namespace FoenixIDE.Simulator.Devices
 
             if (fEntry != null)
             {
-                FileStream stream = new FileStream(fEntry.fqpn, FileMode.Open, FileAccess.Write);
+                FileStream stream = new(fEntry.fqpn, FileMode.Open, FileAccess.Write);
                 try
                 {
                     stream.Seek((page - writeStartCluster) * 512, SeekOrigin.Begin);
@@ -1041,7 +1041,7 @@ namespace FoenixIDE.Simulator.Devices
             {
                 byte[] buffer = new byte[512];
                 string path = GetSDCardPath();
-                FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+                FileStream stream = new(path, FileMode.Open, FileAccess.Read);
                 try
                 {
                     stream.Seek(page * 512, SeekOrigin.Begin);
@@ -1068,7 +1068,7 @@ namespace FoenixIDE.Simulator.Devices
             if ((page >= 0) && (page < 512 * 4096)) // test if we are with in 256MB
             {
                 string path = GetSDCardPath();
-                FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Write);
+                FileStream stream = new(path, FileMode.Open, FileAccess.Write);
                 try
                 {
                     stream.Seek(page * 512, SeekOrigin.Begin);

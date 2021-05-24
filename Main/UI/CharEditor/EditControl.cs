@@ -22,7 +22,7 @@ namespace FoenixIDE.CharEditor
         public event EventHandler CharacterSaved;
 
         Brush textBrush = new SolidBrush(Color.LightGreen);
-        Pen borderPen = new Pen(Color.DarkGray);
+        Pen borderPen = new(Color.DarkGray);
 
         public EditControl()
         {
@@ -86,13 +86,13 @@ namespace FoenixIDE.CharEditor
 
         private Point GetPixel(Point location)
         {
-            Rectangle pixel = new Rectangle(
+            Rectangle pixel = new(
                 0,
                 0,
                 characterPanel.ClientRectangle.Width / Columns,
                 characterPanel.ClientRectangle.Height / Rows);
 
-            Point p = new Point
+            Point p = new()
             {
                 X = location.X / pixel.Width,
                 Y = location.Y / pixel.Height
@@ -270,7 +270,7 @@ namespace FoenixIDE.CharEditor
 
         private void CharacterPanel_Paint(object sender, PaintEventArgs e)
         {
-            Rectangle pixel = new Rectangle(
+            Rectangle pixel = new(
                 0,
                 0,
                 characterPanel.ClientRectangle.Width / Columns,

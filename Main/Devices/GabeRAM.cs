@@ -5,7 +5,7 @@ namespace FoenixIDE.Simulator.Devices
 {
     public class GabeRAM : MemoryLocations.MemoryRAM
     {
-        private Random rng = new Random();
+        private Random rng = new();
 
         public GabeRAM(int StartAddress, int Length) : base(StartAddress, Length)
         {

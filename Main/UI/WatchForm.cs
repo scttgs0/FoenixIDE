@@ -100,7 +100,7 @@ namespace FoenixIDE.UI
                     {
                         kernel_ref.WatchList.Remove(addressVal);
                     }
-                    WatchedMemory mem = new WatchedMemory(NameText.Text, addressVal,
+                    WatchedMemory mem = new(NameText.Text, addressVal,
                         kernel_ref.MemMgr.ReadByte(addressVal),
                         kernel_ref.MemMgr.ReadWord(addressVal)
                     );

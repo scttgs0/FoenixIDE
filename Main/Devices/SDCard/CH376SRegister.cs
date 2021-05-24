@@ -20,7 +20,7 @@ namespace FoenixIDE.Simulator.Devices
         string fileToReadAsBytes = null;
         string spaces = "\0\0\0\0\0\0\0\0";
 
-        List<ShortLongFileName> dircontent = new List<ShortLongFileName>();
+        List<ShortLongFileName> dircontent = new();
         int dirItem = 0;
         string filedata = "";
         int filepos = -1;
@@ -318,7 +318,7 @@ namespace FoenixIDE.Simulator.Devices
             // Add the parent folder only if the inital name is not /*
             if (!path.Equals(GetSDCardPath()))
             {
-                ShortLongFileName slf = new ShortLongFileName();
+                ShortLongFileName slf = new();
                 DirectoryInfo parent = Directory.GetParent(path);
                 slf.longName = parent.ToString();
                 slf.shortName = ".." + spaces + spaces[0] + (char)(byte)FileAttributes.Directory + spaces + spaces + "\0\0\0\0";
@@ -327,7 +327,7 @@ namespace FoenixIDE.Simulator.Devices
             }
             foreach (string dir in dirs)
             {
-                ShortLongFileName slf = new ShortLongFileName
+                ShortLongFileName slf = new()
                 {
                     longName = dir,
                     shortName = ShortFilename(dir.Substring(path.Length)) + (char)(byte)FileAttributes.Directory + spaces + spaces + "\0\0\0\0",
@@ -340,7 +340,7 @@ namespace FoenixIDE.Simulator.Devices
                 int size = (int)new FileInfo(file).Length;
                 byte[] sizeB = BitConverter.GetBytes(size);
 
-                ShortLongFileName slf = new ShortLongFileName
+                ShortLongFileName slf = new()
                 {
                     longName = file,
                     shortName = ShortFilename(file.Substring(path.Length)) + (char)(byte)FileAttributes.Archive + spaces + spaces + System.Text.Encoding.Default.GetString(sizeB)

@@ -22,8 +22,8 @@ namespace FoenixIDE.UI
         public FoenixSystem kernel = null;
         private BoardVersion boardVersion = BoardVersion.RevC;
 
-        SerialPort serial = new SerialPort();
-        private Queue<byte> recievedData = new Queue<byte>();
+        SerialPort serial = new();
+        private Queue<byte> recievedData = new();
 
         public void SetBoardVersion(BoardVersion ver)
         {
@@ -138,7 +138,7 @@ namespace FoenixIDE.UI
             {
                 if (Path.GetExtension(filename).ToUpper().Equals(".BIN"))
                 {
-                    FileInfo f = new FileInfo(filename);
+                    FileInfo f = new(filename);
                     flen = f.Length;
                 }
                 else
@@ -172,7 +172,7 @@ namespace FoenixIDE.UI
          */
         private void BrowseFileButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDlg = new OpenFileDialog
+            OpenFileDialog openFileDlg = new()
             {
                 DefaultExt = ".hex",
                 Filter = "Hex documents|*.hex|Binary documents|*.bin",
@@ -396,9 +396,9 @@ namespace FoenixIDE.UI
                 byte[] DataBuffer = new byte[transmissionSize];  // Maximum 2 MB, example from $0 to $1F:FFFF.
                 if (FetchData(DataBuffer, blockAddress, transmissionSize, DebugModeCheckbox.Checked))
                 {
-                    MemoryRAM mem = new MemoryRAM(blockAddress, transmissionSize);
+                    MemoryRAM mem = new(blockAddress, transmissionSize);
                     mem.Load(DataBuffer, 0, 0, transmissionSize);
-                    MemoryWindow tempMem = new MemoryWindow
+                    MemoryWindow tempMem = new()
                     {
                         Memory = mem,
                         Text = "C256 Memory from " + blockAddress.ToString("X6") +
@@ -670,7 +670,7 @@ namespace FoenixIDE.UI
         {
             //            int dwStartTime = System.Environment.TickCount;
             byte byte_buffer;
-            Stopwatch stopWatch = new Stopwatch();
+            Stopwatch stopWatch = new();
             serial.Write(command, 0, command.Length);
 
             Stat0 = 0;

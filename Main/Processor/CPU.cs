@@ -18,7 +18,7 @@ namespace FoenixIDE.Processor
         public OpCode CurrentOpcode = null;
         public int SignatureBytes = 0;
 
-        public CPUPins Pins = new CPUPins();
+        public CPUPins Pins = new();
 
         /// <summary>
         /// When true, the CPU will not execute the next instruction. Used by the debugger
@@ -92,7 +92,7 @@ namespace FoenixIDE.Processor
             MemMgr = mm;
             clockSpeed = 14000000;
             clockCyles = 0;
-            Operations operations = new Operations(this);
+            Operations operations = new(this);
             operations.SimulatorCommand += Operations_SimulatorCommand;
             opcodes = new OpcodeList(operations, this);
             Flags.Emulation = true;

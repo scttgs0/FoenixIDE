@@ -46,7 +46,7 @@ namespace MIDI_to_VGM_Converter
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append("I:").Append(index).Append(" D:").Append(deltaTime).Append(" W:").Append(wait);
             sb.Append(" T:").Append(type).Append(" C:").Append(midiChannel);
             switch (type)

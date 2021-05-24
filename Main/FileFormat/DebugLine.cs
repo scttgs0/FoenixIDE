@@ -1,15 +1,13 @@
 ﻿using FoenixIDE.Processor;
 using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FoenixIDE.Simulator.FileFormat
 {
     /// <summary>
     /// Container to hold one line of 65C816 code debugging data
     /// </summary>
-    public class DebugLine: ICloneable
+    public class DebugLine : ICloneable
     {
         //public bool isBreakpoint = false;
         public int PC;
@@ -58,7 +56,7 @@ namespace FoenixIDE.Simulator.FileFormat
             OpcodeList.STA_DirectPage,
             OpcodeList.STA_DirectPageIndirect
         };
-        
+
         // Only expand when it's going to be displayed
         override public string ToString()
         {
@@ -90,7 +88,7 @@ namespace FoenixIDE.Simulator.FileFormat
         public void SetOpcodes(string cmd)
         {
             string[] ops = cmd.Split(',');
-            commandLength = ops.Length-1;
+            commandLength = ops.Length - 1;
             command = new byte[commandLength];
             for (int i = 0; i < commandLength; i++)
             {
@@ -144,7 +142,7 @@ namespace FoenixIDE.Simulator.FileFormat
 
         public bool CheckOpcodes(MemoryLocations.MemoryRAM ram)
         {
-            for (int i=0;i<commandLength;i++)
+            for (int i = 0; i < commandLength; i++)
             {
                 if (ram.ReadByte(PC + i) != command[i])
                 {

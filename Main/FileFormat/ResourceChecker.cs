@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FoenixIDE.Simulator.FileFormat
@@ -27,11 +25,11 @@ namespace FoenixIDE.Simulator.FileFormat
                 int endRange = res.StartAddress + res.Length;
 
                 if (resource.StartAddress >= beginRange && resource.StartAddress < endRange ||
-                    (resource.StartAddress+ resource.Length) > beginRange && (resource.StartAddress + resource.Length) < endRange)
+                    (resource.StartAddress + resource.Length) > beginRange && (resource.StartAddress + resource.Length) < endRange)
                 {
                     if (MessageBox.Show(
                         String.Format(
-                            "This image overlap resource {0} which starts at {1:X6} and ends at {2:X6}.\r\nDo you want to load it anyway?", 
+                            "This image overlap resource {0} which starts at {1:X6} and ends at {2:X6}.\r\nDo you want to load it anyway?",
                             res.Name, res.StartAddress, res.StartAddress + res.Length),
                         "Overlap Detected", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                     {

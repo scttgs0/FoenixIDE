@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace FoenixIDE.Timers
 {
@@ -95,7 +91,7 @@ namespace FoenixIDE.Timers
         [DllImport("Winmm.dll", CharSet = CharSet.Auto)]
         private static extern uint timeEndPeriod(uint uPeriod);
 
-		// Use this to pin the timerCallback functions to avoid improper garbage collection
+        // Use this to pin the timerCallback functions to avoid improper garbage collection
         private GCHandle _gcHandle;
 
 
@@ -148,7 +144,7 @@ namespace FoenixIDE.Timers
             Enabled = false;
             //Initialize the API callback
             timerCallback = CallbackFunction;
-			// pin the timerCallback to a fixed memory address, such that the c# GC won't mess with it.
+            // pin the timerCallback to a fixed memory address, such that the c# GC won't mess with it.
             _gcHandle = GCHandle.Alloc(timerCallback);
         }
 

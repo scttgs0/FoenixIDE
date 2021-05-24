@@ -1,5 +1,4 @@
-﻿using FoenixIDE.MemoryLocations;
-using FoenixIDE.Simulator.Devices.SDCard;
+﻿using FoenixIDE.Simulator.Devices.SDCard;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,25 +12,25 @@ namespace FoenixIDE.Simulator.Devices
         public bool isDirectory = false;
     }
 
-    public class CH376SRegister: SDCardDevice
+    public class CH376SRegister : SDCardDevice
     {
         private CH376SCommand currentCommand = CH376SCommand.NONE;
-        
+
         string filename = "";
         string fileToReadAsBytes = null;
         string spaces = "\0\0\0\0\0\0\0\0";
 
-        List <ShortLongFileName> dircontent = new List<ShortLongFileName> ();
+        List<ShortLongFileName> dircontent = new List<ShortLongFileName>();
         int dirItem = 0;
         string filedata = "";
         int filepos = -1;
         int fileoffset = 0;
-        
+
         int byteRead = 0;
         byte[] byteReadArray = new byte[4];
         byte[] fileArray;
 
-        public CH376SRegister(int StartAddress, int Length): base(StartAddress, Length)
+        public CH376SRegister(int StartAddress, int Length) : base(StartAddress, Length)
         {
         }
 
@@ -89,7 +88,7 @@ namespace FoenixIDE.Simulator.Devices
                                 data[0] = (byte)CH376SResponse.CMD_RET_ABORT;
                             }
                             break;
-                        
+
                         case CH376SCommand.FILE_OPEN:
                             break;
                         case CH376SCommand.SET_FILE_NAME:
@@ -215,7 +214,7 @@ namespace FoenixIDE.Simulator.Devices
                 {
                     rootPath = sdCurrentPath;
                 }
-                
+
                 dircontent.Clear();
                 LoadDirContents(rootPath);
             }
@@ -256,7 +255,7 @@ namespace FoenixIDE.Simulator.Devices
             if (pos > 0)
             {
                 string filename = longname.Substring(0, pos).Replace(" ", "").Replace("\\", "");
-                string extension = longname.Substring(pos+1);
+                string extension = longname.Substring(pos + 1);
                 if (filename.Length > 8)
                 {
                     filename = filename.Substring(0, 6) + "~1";
@@ -266,17 +265,17 @@ namespace FoenixIDE.Simulator.Devices
                 {
                     extension = extension.Substring(0, 3);
                 }
-                extension += spaces.Substring(0,3 - extension.Length);
+                extension += spaces.Substring(0, 3 - extension.Length);
                 return filename.ToUpper() + extension.ToUpper();
             }
             else
             {
-                string filename = longname.Replace(" ", "").Replace("\\","");
+                string filename = longname.Replace(" ", "").Replace("\\", "");
                 if (filename.Length > 8)
                 {
                     filename = filename.Substring(0, 6) + "~1";
                 }
-                filename += spaces.Substring(0,8-filename.Length);
+                filename += spaces.Substring(0, 8 - filename.Length);
                 return filename.ToUpper() + spaces.Substring(0, 3);
             }
         }

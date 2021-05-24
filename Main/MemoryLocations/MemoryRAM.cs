@@ -1,6 +1,4 @@
-﻿using FoenixIDE.Simulator.FileFormat;
-using FoenixIDE.MemoryLocations;
-using System;
+﻿using System;
 
 namespace FoenixIDE.MemoryLocations
 {

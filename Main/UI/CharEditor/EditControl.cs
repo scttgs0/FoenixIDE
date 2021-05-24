@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FoenixIDE.CharEditor
@@ -134,9 +130,9 @@ namespace FoenixIDE.CharEditor
                 else
                     p.BackColor = Color0;
             }
-            
 
-            
+
+
         }
 
         private void Save_Click(object sender, EventArgs e)

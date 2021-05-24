@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace FoenixIDE.CharEditor
 {
     public partial class CharViewer : UserControl
     {
         const int CHARSET_SIZE = 2048;
-        
+
         Brush textBrush = Brushes.LightGray;  //new SolidBrush(SystemColors.WindowText);
         Brush selectedBrush = Brushes.Gray;
         Pen pen = Pens.Gray;
@@ -53,7 +48,7 @@ namespace FoenixIDE.CharEditor
 
             BinaryReader br = new System.IO.BinaryReader(new FileStream(Filename, FileMode.Open));
             byte[] data = br.ReadBytes(CHARSET_SIZE);
-            
+
             return data;
         }
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace FoenixIDE.Basic
 {
@@ -39,7 +35,7 @@ namespace FoenixIDE.Basic
         sc_enter = 0x1C,
         sc_controlLeft = 0x1D,
         sc_a = 0x1E,
-        sc_s =0x1F,
+        sc_s = 0x1F,
         sc_d = 0x20,
         sc_f = 0x21,
         sc_g = 0x22,
@@ -88,7 +84,7 @@ namespace FoenixIDE.Basic
     {
         public static ScanCode GetScanCode(Keys key)
         {
-            switch(key)
+            switch (key)
             {
                 case Keys.D0:
                     return ScanCode.sc_0;
@@ -220,5 +216,5 @@ namespace FoenixIDE.Basic
             return ScanCode.sc_null;
         }
     }
-    
+
 }

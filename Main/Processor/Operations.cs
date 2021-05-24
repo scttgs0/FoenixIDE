@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Threading.Tasks;
-using FoenixIDE;
-using FoenixIDE.MemoryLocations;
+﻿using FoenixIDE.MemoryLocations;
+using System;
 
 namespace FoenixIDE.Processor
 {
@@ -193,7 +188,7 @@ namespace FoenixIDE.Processor
 
         private int GetDirectPageIndirectIndexedLong(int Address, Register Y)
         {
-            int addr =  cpu.DirectPage.GetLongAddress(Address);
+            int addr = cpu.DirectPage.GetLongAddress(Address);
 
             // This effective address can overflow into the next bank.
             int ptr = cpu.MemMgr.ReadLong(addr) + Y.Value;
@@ -213,7 +208,7 @@ namespace FoenixIDE.Processor
 
             int ptr = cpu.MemMgr.ReadWord(addr) + Y.Value;
             ptr = cpu.DataBank.GetLongAddress(ptr);
-            return (cpu.A.Width == 1) ? cpu.MemMgr.ReadByte(ptr) : cpu.MemMgr.ReadWord(ptr);               
+            return (cpu.A.Width == 1) ? cpu.MemMgr.ReadByte(ptr) : cpu.MemMgr.ReadWord(ptr);
         }
 
         /// <summary>
@@ -361,7 +356,7 @@ namespace FoenixIDE.Processor
         public void ExecuteShift(byte instruction, AddressModes addressMode, int signature)
         {
             int val = GetValue(addressMode, signature, cpu.A.Width);
-            
+
             switch (instruction)
             {
                 case OpcodeList.ASL_DirectPage:
@@ -624,7 +619,7 @@ namespace FoenixIDE.Processor
                         cpu.MemMgr.WriteWord(addr, bval);
                         cpu.Flags.SetNZ(bval, 2);
                     }
-                    
+
                     break;
 
                 case OpcodeList.INC_Accumulator:
@@ -650,7 +645,7 @@ namespace FoenixIDE.Processor
                         cpu.MemMgr.WriteWord(addr, bval);
                         cpu.Flags.SetNZ(bval, 2);
                     }
-                    
+
                     break;
 
                 case OpcodeList.DEX_Implied:
@@ -746,7 +741,7 @@ namespace FoenixIDE.Processor
                     return cpu.Stack.Value + SignatureBytes;
                 case AddressModes.StackRelativeIndirectIndexedWithY:
                     int bankOffset = Bank.Value << 16;
-                    addr = bankOffset  + (cpu.Stack.Value + SignatureBytes);
+                    addr = bankOffset + (cpu.Stack.Value + SignatureBytes);
                     return bankOffset + cpu.MemMgr.ReadWord(addr) + cpu.Y.Value;
                 case AddressModes.StackProgramCounterRelativeLong:
                     return SignatureBytes;
@@ -768,7 +763,7 @@ namespace FoenixIDE.Processor
                     //return cpu.ProgramBank.GetLongAddress(ptr);
                     return (cpu.PC & 0xFF_0000) + ptr;
                 case AddressModes.Accumulator:
-                    return 0; 
+                    return 0;
                 default:
                     throw new NotImplementedException("GetAddress() Address mode not implemented: " + addressMode.ToString());
             }
@@ -801,7 +796,7 @@ namespace FoenixIDE.Processor
                 // A - X
                 case OpcodeList.TXA_Implied:
                     transWidth = cpu.A.Width;
-                    cpu.A.Value = transWidth == 1? cpu.X.Value & 0xFF : cpu.X.Value;
+                    cpu.A.Value = transWidth == 1 ? cpu.X.Value & 0xFF : cpu.X.Value;
                     cpu.Flags.SetNZ(cpu.A.Value, transWidth);
                     break;
                 case OpcodeList.TAX_Implied:
@@ -838,7 +833,7 @@ namespace FoenixIDE.Processor
                     cpu.Y.Value = transWidth == 1 ? cpu.X.Value & 0xFF : cpu.X.Value;
                     cpu.Flags.SetNZ(cpu.Y.Value, transWidth);
                     break;
-                
+
                 case OpcodeList.TYX_Implied:
                     transWidth = cpu.X.Width;
                     cpu.X.Value = transWidth == 1 ? cpu.Y.Value & 0xFF : cpu.Y.Value;
@@ -874,7 +869,7 @@ namespace FoenixIDE.Processor
                 case OpcodeList.JMP_AbsoluteIndirectLong:
                     cpu.JumpLong(addr);
                     return;
-                
+
                 // RTS, RTL, RTI
                 case OpcodeList.RTI_StackImplied:
                     cpu.Flags.SetFlags(cpu.Pull(1));
@@ -1010,7 +1005,7 @@ namespace FoenixIDE.Processor
                 nv = HexVal(BCDVal(val) + BCDVal(cpu.A.Value) + cpu.Flags.CarryBit);
             else
                 nv = val + cpu.A.Value + cpu.Flags.CarryBit;
-            
+
             cpu.Flags.Carry = (nv < 0 || nv > cpu.A.MaxUnsigned);
             // We need to detect a wraparound - when the sign changes but there is no overflow
             cpu.Flags.oVerflow = ((cpu.A.Value ^ nv) & (val ^ nv) & 0x80) != 0;
@@ -1044,7 +1039,7 @@ namespace FoenixIDE.Processor
             {
                 cpu.Flags.oVerflow = ((cpu.A.Value ^ nv) & ((65536 - val) ^ nv) & 0x8000) != 0;
             }
-                      
+
             cpu.Flags.SetNZ(nv, cpu.A.Width);
 
             cpu.A.Value = nv;
@@ -1054,17 +1049,17 @@ namespace FoenixIDE.Processor
         {
             if (value < 256)
             {
-                return (((value & 0xF0) >> 4 ) * 10) + (value & 0xF);
+                return (((value & 0xF0) >> 4) * 10) + (value & 0xF);
             }
             else
             {
-                int val = (((value & 0xF000) >> 12) * 1000) + (((value & 0xF00) >> 8 ) * 100) + (((value & 0xF0) >> 4 ) * 10 )  + ( value & 0xF );
+                int val = (((value & 0xF000) >> 12) * 1000) + (((value & 0xF00) >> 8) * 100) + (((value & 0xF0) >> 4) * 10) + (value & 0xF);
                 return val;
             }
         }
         private int HexVal(int bcd)
         {
-            return bcd / 10000 * 256*256 + (bcd % 10000) / 1000 * 256 * 16 + ((bcd % 10000) % 1000) / 100 * 256 + (((bcd % 10000) % 1000) % 100)/ 10 * 16 + (((bcd % 10000) % 1000) % 100) % 10;
+            return bcd / 10000 * 256 * 256 + (bcd % 10000) / 1000 * 256 * 16 + ((bcd % 10000) % 1000) / 100 * 256 + (((bcd % 10000) % 1000) % 100) / 10 * 16 + (((bcd % 10000) % 1000) % 100) % 10;
         }
         public void ExecuteSTZ(byte instruction, AddressModes addressMode, int signature)
         {

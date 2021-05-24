@@ -1,13 +1,7 @@
-﻿using FoenixIDE.MemoryLocations;
-using FoenixIDE.Simulator.FileFormat;
+﻿using FoenixIDE.Simulator.FileFormat;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FoenixIDE.UI
@@ -66,7 +60,7 @@ namespace FoenixIDE.UI
                         e.Value = kvp.Value.val16bit.ToString("X4");
                         break;
                 }
-                
+
             }
             catch
             {
@@ -86,7 +80,7 @@ namespace FoenixIDE.UI
                     break;
                 // Delete the row, but copy the values into our input boxes
                 case 5:
-                    
+
                     NameText.Text = kvp.Value.name;
                     AddressText.Text = "$" + kvp.Value.address.ToString("X6");
                     kernel_ref.WatchList.Remove(kvp.Key);

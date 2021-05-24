@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FoenixIDE.MemoryLocations;
 using FoenixIDE.Processor;
-using FoenixIDE.Display;
-using System.Threading;
-using FoenixIDE.MemoryLocations;
 using FoenixIDE.Simulator.Devices;
 using FoenixIDE.Simulator.FileFormat;
-using FoenixIDE.UI;
+using System.Collections.Generic;
 
 namespace FoenixIDE
 {
@@ -90,7 +84,7 @@ namespace FoenixIDE
 
             // Assign memory variables used by other processes
             CPU = new CPU(MemMgr);
-            
+
             MemMgr.VDMA.setVideoRam(MemMgr.VIDEO);
             MemMgr.VDMA.setSystemRam(MemMgr.RAM);
             MemMgr.GABE.WriteByte(MemoryMap.GABE_SYS_STAT - MemoryMap.GABE_START, SystemStat);
@@ -189,7 +183,7 @@ namespace FoenixIDE
                         lstFile = new ListFile(LoadedKernel);
                     }
                     else
-                    { 
+                    {
                         // TODO: This results in lines of code to be shown in incorrect order - Fix
                         ListFile tempList = new ListFile(LoadedKernel);
                         foreach (DebugLine line in tempList.Lines.Values)

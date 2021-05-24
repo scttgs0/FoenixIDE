@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using System.Text;
-using System.Threading.Tasks;
-
 namespace FoenixIDE.Processor
 {
     public class Breakpoints : SortedList<int, string>
@@ -33,14 +30,14 @@ namespace FoenixIDE.Processor
         public string GetHex(int value)
         {
             String val = value.ToString("X6");
-            return "$" + val.Substring(0,2) + ":"+ val.Substring(2);
+            return "$" + val.Substring(0, 2) + ":" + val.Substring(2);
         }
 
         public int GetIntFromHex(string Hex)
         {
             try
             {
-                int ret = Convert.ToInt32(Hex.Replace("$","").Replace(":", ""), 16);
+                int ret = Convert.ToInt32(Hex.Replace("$", "").Replace(":", ""), 16);
                 return ret;
             }
             catch (Exception)

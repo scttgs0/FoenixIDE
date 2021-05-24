@@ -1,12 +1,8 @@
-﻿using FoenixIDE.Simulator.FileFormat;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace FoenixIDE.Simulator.Devices
 {
-    public class CodecRAM: MemoryLocations.MemoryRAM
+    public class CodecRAM : MemoryLocations.MemoryRAM
     {
         public CodecRAM(int StartAddress, int Length) : base(StartAddress, Length)
         {

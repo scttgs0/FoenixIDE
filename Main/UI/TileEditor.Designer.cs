@@ -434,8 +434,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button SaveTilesetButton;
         private System.Windows.Forms.Button ClearTilemapButton;
+#pragma warning disable CS0108 // 'TileEditor.Height' hides inherited member 'Control.Height'. Use the new keyword if hiding was intended.
         private System.Windows.Forms.TextBox Height;
+#pragma warning restore CS0108 // 'TileEditor.Height' hides inherited member 'Control.Height'. Use the new keyword if hiding was intended.
+#pragma warning disable CS0108 // 'TileEditor.Width' hides inherited member 'Control.Width'. Use the new keyword if hiding was intended.
         private System.Windows.Forms.TextBox Width;
+#pragma warning restore CS0108 // 'TileEditor.Width' hides inherited member 'Control.Width'. Use the new keyword if hiding was intended.
         private System.Windows.Forms.Label YLabel;
         private System.Windows.Forms.Label XLabel;
         private System.Windows.Forms.TextBox TilemapAddress;

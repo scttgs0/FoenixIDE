@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FoenixIDE.MemoryLocations
+﻿namespace FoenixIDE.MemoryLocations
 {
     public static partial class MemoryMap
     {
@@ -26,7 +20,7 @@ namespace FoenixIDE.MemoryLocations
         public const int SDCARD_START = 0xAF_E808;  // Start of SDCARD memory range
 
         public const int DIP_USER_MODE = 0xAF_E80D;
-        public const int DIP_BOOT_MODE = 0xAF_E80E;  
+        public const int DIP_BOOT_MODE = 0xAF_E80E;
 
         public const int SDCARD_END = 0xAF_E81F;    // End of SDCARD memory range
         public const int SDCARD_SIZE = 0x09;        // Size of SD Card memory range
@@ -52,16 +46,16 @@ namespace FoenixIDE.MemoryLocations
         public const int GABE_RST_AUTH1 = 0xAF_E883; // Must Contain the BYTE $DE for Reset to Activate
 
         // READ
-        public const int GABE_RNG_DAT_LO = 0xAF_E884 ; // Low Part of 16Bit RNG Generator
-        public const int GABE_RNG_DAT_HI = 0xAF_E885 ; // High Part of 16Bit RNG Generator
+        public const int GABE_RNG_DAT_LO = 0xAF_E884; // Low Part of 16Bit RNG Generator
+        public const int GABE_RNG_DAT_HI = 0xAF_E885; // High Part of 16Bit RNG Generator
 
         // WRITE
-        public const int GABE_RNG_SEED_LO = 0xAF_E884 ; // Low Part of 16Bit RNG Generator
-        public const int GABE_RNG_SEED_HI = 0xAF_E885 ; // High Part of 16Bit RNG Generator
+        public const int GABE_RNG_SEED_LO = 0xAF_E884; // Low Part of 16Bit RNG Generator
+        public const int GABE_RNG_SEED_HI = 0xAF_E885; // High Part of 16Bit RNG Generator
 
         // READ
         //GABE_RNG_LFSR_DONE  = $80     ; indicates that Output = SEED Database
-        public const int GABE_RNG_STAT = 0xAF_E886 ;
+        public const int GABE_RNG_STAT = 0xAF_E886;
 
 
         // WRITE
@@ -69,7 +63,7 @@ namespace FoenixIDE.MemoryLocations
           GABE_RNG_CTRL_EN    = $01     ; Enable the LFSR BLOCK_LEN
           GABE_RNG_CTRL_DV    = $02     ; After Setting the Seed Value, Toggle that Bit for it be registered
         */
-        public const int GABE_RNG_CTRL = 0xAF_E886 ;
+        public const int GABE_RNG_CTRL = 0xAF_E886;
 
         /*
             GABE_SYS_STAT_MID0  = $01     ; Machine ID -- LSB
@@ -78,7 +72,7 @@ namespace FoenixIDE.MemoryLocations
             GABE_SYS_STAT_CPUA  = $40     ; Indicates the(8bit/16bit) Size of the Accumulator
             GABE_SYS_STAT_CPUX  = $80     ; Indicates the(8bit/16bit) Size of the Accumulator
         */
-        public const int GABE_SYS_STAT = 0xAF_E887 ;
+        public const int GABE_SYS_STAT = 0xAF_E887;
 
         public const int CODEC_START_FMX = 0xAF_E900;    // Start of CODEC for FMX
         public const int CODEC_WR_CTRL_FMX = 0xAF_E902;  // codec write address for FMX

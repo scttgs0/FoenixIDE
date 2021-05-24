@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FoenixIDE.MemoryLocations;
+using System;
 using System.Threading;
-using System.Threading.Tasks;
-using FoenixIDE;
-using FoenixIDE.MemoryLocations;
 
 namespace FoenixIDE.Processor
 {
@@ -137,7 +133,7 @@ namespace FoenixIDE.Processor
         {
             if (Pins.Ready_)
                 return false;
-            
+
 
             if (this.Pins.GetInterruptPinActive)
             {
@@ -227,9 +223,9 @@ namespace FoenixIDE.Processor
                 Flags.accumulatorShort = true;
                 Flags.xRegisterShort = true;
             }
-            A.Width = Flags.accumulatorShort? 1 : 2;
-            X.Width = Flags.xRegisterShort? 1 : 2;
-            Y.Width = Flags.xRegisterShort? 1 : 2;
+            A.Width = Flags.accumulatorShort ? 1 : 2;
+            X.Width = Flags.xRegisterShort ? 1 : 2;
+            Y.Width = Flags.xRegisterShort ? 1 : 2;
         }
 
         /// <summary>
@@ -376,7 +372,7 @@ namespace FoenixIDE.Processor
                 throw new Exception("bytes must be between 1 and 3. got " + bytes.ToString());
 
             int ret = MemMgr.Read(Stack.Value + 1, bytes);
-            
+
             Stack.Value += bytes;
             return ret;
         }
@@ -435,7 +431,7 @@ namespace FoenixIDE.Processor
             {
                 Push(PC & 0xFFFF, 2);
             }
-            
+
             Push(Flags);
 
             int addr = 0;

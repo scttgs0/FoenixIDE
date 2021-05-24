@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FoenixIDE.MemoryLocations
+﻿namespace FoenixIDE.MemoryLocations
 {
     public interface IMappable
     {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FoenixIDE.Processor
+﻿namespace FoenixIDE.Processor
 {
     /// <summary>
     /// Class to encapsulte the state of the CPU 'Control Pins'. This is a made

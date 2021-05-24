@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using FoenixIDE.Display;
+﻿using System.Windows.Forms;
 
 namespace FoenixIDE
 {

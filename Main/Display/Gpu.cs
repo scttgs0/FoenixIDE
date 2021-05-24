@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Drawing.Text;
-using System.Drawing.Imaging;
-using FoenixIDE.Simulator.FileFormat;
-using FoenixIDE.MemoryLocations;
-using System.Diagnostics;
+﻿using FoenixIDE.MemoryLocations;
 using FoenixIDE.Timers;
-using System.Threading.Tasks;
+using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace FoenixIDE.Display
 {
@@ -167,7 +160,9 @@ namespace FoenixIDE.Display
 
             int resX = 640;
             int resY = 480;
+#pragma warning disable CS0219 // The variable 'isPixelDoubled' is assigned but its value is never used
             bool isPixelDoubled = false;
+#pragma warning restore CS0219 // The variable 'isPixelDoubled' is assigned but its value is never used
             switch (MCRHigh)
             {
                 case 1:
@@ -248,7 +243,7 @@ namespace FoenixIDE.Display
             //}
 
             //Rectangle rect = new Rectangle(0, 0, resX, resY);
-            Rectangle rect = new Rectangle(0, 0, resX-1, resY-1);
+            Rectangle rect = new Rectangle(0, 0, resX - 1, resY - 1);
             BitmapData bitmapData = frameBuffer.LockBits(rect, ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
             int* bitmapPointer = (int*)bitmapData.Scan0.ToPointer();
 
@@ -338,7 +333,7 @@ namespace FoenixIDE.Display
                     // Bitmap Mode - draw the layers in revers order from back to front
                     if ((MCRegister & 0x4) == 0x4 || tileEditorMode)
                     {
-                        
+
                         // Layer 12 - sprite layer 6
                         if ((MCRegister & 0x20) != 0)
                         {
@@ -431,14 +426,14 @@ namespace FoenixIDE.Display
         {
             //int offset = lutIndex * 256 + color;
             int value = lutCache[lutIndex * 256 + color];
-            
+
             if (value == 0)
             {
-                
+
                 int lutAddress = MemoryMap.GRP_LUT_BASE_ADDR - MemoryMap.VICKY_BASE_ADDR + (lutIndex * 256 + color) * 4;
                 byte red = VICKY.ReadByte(lutAddress);
-                byte green = VICKY.ReadByte(lutAddress+1);
-                byte blue = VICKY.ReadByte(lutAddress+2);
+                byte green = VICKY.ReadByte(lutAddress + 1);
+                byte blue = VICKY.ReadByte(lutAddress + 2);
                 if (gamma)
                 {
                     int baseAddr = MemoryMap.GAMMA_BASE_ADDR - MemoryMap.VICKY_BASE_ADDR;
@@ -561,7 +556,7 @@ namespace FoenixIDE.Display
                 byte fgColor = (byte)((color & 0xF0) >> 4);
                 byte bgColor = (byte)(color & 0x0F);
 
-                int[] textColors = GetTextLUT(fgColor, bgColor, gammaCorrection); 
+                int[] textColors = GetTextLUT(fgColor, bgColor, gammaCorrection);
 
                 byte value = VICKY.ReadByte(fontBaseAddress + character * 8 + fontLine);
                 //int offset = (x + line * 640) * 4;
@@ -584,7 +579,7 @@ namespace FoenixIDE.Display
                 }
             }
         }
-        
+
         private unsafe void DrawBitmap(int* p, bool gammaCorrection, int layer, bool bkgrnd, int bgndColor, int borderXSize, int borderYSize, int line, int width, int height)
         {
 
@@ -635,8 +630,8 @@ namespace FoenixIDE.Display
 
             int tilemapWidth = VICKY.ReadWord(addrTileCtrlReg + 4) & 0x3FF;   // 10 bits
             int tilemapHeight = VICKY.ReadWord(addrTileCtrlReg + 6) & 0x3FF;  // 10 bits
-            int tilemapAddress = VICKY.ReadLong(addrTileCtrlReg + 1 );
-            
+            int tilemapAddress = VICKY.ReadLong(addrTileCtrlReg + 1);
+
             int tilemapWindowX = VICKY.ReadWord(addrTileCtrlReg + 8);
             bool dirUp = (tilemapWindowX & 0x4000) != 0;
             byte scrollX = (byte)(tilemapWindowX & 0x3C00 >> 10);
@@ -648,7 +643,7 @@ namespace FoenixIDE.Display
             byte scrollY = (byte)(tilemapWindowY & 0x3C00 >> 10);
             tilemapWindowY &= 0x3FF;
 
-            int tileRow = ( line + tilemapWindowY ) / TILE_SIZE;
+            int tileRow = (line + tilemapWindowY) / TILE_SIZE;
             int tileYOffset = (line + tilemapWindowY) % TILE_SIZE;
 
             // we always read tiles 0 to width/TILE_SIZE + 1 - this is to ensure we can display partial tiles, with X,Y offsets
@@ -660,16 +655,16 @@ namespace FoenixIDE.Display
             // cache of tilesetPointers
             int[] tilesetPointers = new int[8];
             int[] strides = new int[8];
-            for (int i=0;i<8;i++)
+            for (int i = 0; i < 8; i++)
             {
                 tilesetPointers[i] = VICKY.ReadLong(MemoryMap.TILESET_BASE_ADDR - MemoryMap.VICKY_BASE_ADDR + i * 4);
                 byte tilesetConfig = VICKY.ReadByte(MemoryMap.TILESET_BASE_ADDR - MemoryMap.VICKY_BASE_ADDR + i * 4 + 3);
-                strides[i] =(tilesetConfig & 8) != 0 ? 256 : 1;
+                strides[i] = (tilesetConfig & 8) != 0 ? 256 : 1;
             }
-            for (int i = 0; i< tilemapItemCount; i++)
+            for (int i = 0; i < tilemapItemCount; i++)
             {
-                byte tile = tiles[i*2];
-                byte tilesetReg = tiles[i*2 + 1];
+                byte tile = tiles[i * 2];
+                byte tilesetReg = tiles[i * 2 + 1];
                 byte tileset = (byte)(tilesetReg & 7);
                 //byte tileLUT = (byte)((tilesetReg & 0x38) >> 3);
 
@@ -683,11 +678,11 @@ namespace FoenixIDE.Display
             int* ptr = p + line * STRIDE;
 
             // Ensure that only one line gets drawn, this avoid incorrect wrapping
-            for (int x = borderXSize; x < width - borderXSize; x ++)
+            for (int x = borderXSize; x < width - borderXSize; x++)
             {
                 int tileIndex = (x + tileXOffset) / TILE_SIZE;
                 //byte tile = tiles[tileIndex];
-                byte tilesetReg = tiles[tileIndex*2 + 1];
+                byte tilesetReg = tiles[tileIndex * 2 + 1];
                 //byte tileset = (byte)(tilesetReg & 7);
                 byte tileLUT = (byte)((tilesetReg & 0x38) >> 3);
 
@@ -813,7 +808,7 @@ namespace FoenixIDE.Display
                         }
                     }
                 }
-                
+
             }
         }
 

@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using FoenixIDE.Processor;
+﻿using FoenixIDE.Processor;
 using FoenixIDE.Simulator.Devices;
 using FoenixIDE.Simulator.FileFormat;
 using Microsoft.VisualBasic;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace FoenixIDE.UI
 {
@@ -23,8 +21,8 @@ namespace FoenixIDE.UI
 
         public static CPUWindow Instance = null;
         private FoenixSystem kernel = null;
-        private int[] ActiveLine = {0, 0, 0};  // PC, startofline, width - the point of this is to underline the ADDRESS name
-        
+        private int[] ActiveLine = { 0, 0, 0 };  // PC, startofline, width - the point of this is to underline the ADDRESS name
+
 
         const int ROW_HEIGHT = 13;
         private int IRQPC = 0; // we only keep track of a single interrupt
@@ -103,7 +101,7 @@ namespace FoenixIDE.UI
 
         private void CPUWindow_Load(object sender, EventArgs e)
         {
-            
+
             HeaderTextbox.Text = "LABEL          PC      OPCODES      SOURCE";
             ClearTrace();
             RefreshStatus();
@@ -165,7 +163,7 @@ namespace FoenixIDE.UI
                             TopLineIndex = index;
                             if (!offsetPrinted)
                             {
-                                
+
                                 if (index > 4)
                                 {
                                     TopLineIndex -= 5;
@@ -184,7 +182,7 @@ namespace FoenixIDE.UI
                                         }
                                         if (knl_breakpoints.ContainsKey(q0.PC))
                                         {
-                                            e.Graphics.DrawEllipse(Pens.White, LABEL_WIDTH - ROW_HEIGHT - 1, painted * ROW_HEIGHT, ROW_HEIGHT+1, ROW_HEIGHT+1);
+                                            e.Graphics.DrawEllipse(Pens.White, LABEL_WIDTH - ROW_HEIGHT - 1, painted * ROW_HEIGHT, ROW_HEIGHT + 1, ROW_HEIGHT + 1);
                                             e.Graphics.FillEllipse(Brushes.DarkRed, LABEL_WIDTH - ROW_HEIGHT, painted * ROW_HEIGHT + 1, ROW_HEIGHT, ROW_HEIGHT);
                                         }
                                         // Check if the memory still matches the opcodes
@@ -258,7 +256,7 @@ namespace FoenixIDE.UI
                     int top = e.Y / ROW_HEIGHT * ROW_HEIGHT;
                     ActiveLine[0] = 0;
                     DebugPanel.Cursor = Cursors.Default;
-                    if ( (e.Y / ROW_HEIGHT != position.Y / ROW_HEIGHT || position.Y == -1) && e.Y / ROW_HEIGHT < 28 )
+                    if ((e.Y / ROW_HEIGHT != position.Y / ROW_HEIGHT || position.Y == -1) && e.Y / ROW_HEIGHT < 28)
                     {
                         position.X = e.X;
                         position.Y = e.Y;
@@ -383,7 +381,7 @@ namespace FoenixIDE.UI
         {
             if (BPCombo.Text.Trim() != "")
             {
-                int newValue = knl_breakpoints.Add(BPCombo.Text.Trim().Replace(">",""));
+                int newValue = knl_breakpoints.Add(BPCombo.Text.Trim().Replace(">", ""));
                 if (newValue > -1)
                 {
                     BPCombo.Text = knl_breakpoints.Format(newValue.ToString("X"));
@@ -426,7 +424,7 @@ namespace FoenixIDE.UI
             {
                 // Clear the interrupt
                 IRQPC = -1;
-                
+
                 kernel.CPU.DebugPause = false;
                 lastLine.Text = "";
                 kernel.CPU.CPUThread = new Thread(new ThreadStart(ThreadProc));
@@ -583,10 +581,10 @@ namespace FoenixIDE.UI
             {
                 BPCombo.Text = knl_breakpoints.GetHex(pc);
             }
-            
+
             RefreshStatus();
             RunButton.Enabled = true;
-            
+
         }
         private delegate void nullParamMethod();
 
@@ -601,7 +599,7 @@ namespace FoenixIDE.UI
             int previousPC = kernel.CPU.PC;
             if (!kernel.CPU.ExecuteNext())
             {
-                
+
                 int nextPC = kernel.CPU.PC;
                 if (nextPC > MemoryLimit)
                 {
@@ -618,9 +616,9 @@ namespace FoenixIDE.UI
                     }
                     return;
                 }
-                if ( knl_breakpoints.ContainsKey(nextPC) || 
-                     kernel.CPU.CurrentOpcode.Value == 0 || 
-                     (BreakOnIRQCheckBox.Checked && (kernel.CPU.Pins.GetInterruptPinActive && InterruptMatchesCheckboxes()) )
+                if (knl_breakpoints.ContainsKey(nextPC) ||
+                     kernel.CPU.CurrentOpcode.Value == 0 ||
+                     (BreakOnIRQCheckBox.Checked && (kernel.CPU.Pins.GetInterruptPinActive && InterruptMatchesCheckboxes()))
                    )
                 {
                     if (kernel.CPU.CurrentOpcode.Value == 0)
@@ -734,7 +732,7 @@ namespace FoenixIDE.UI
         {
             BPCombo.BeginUpdate();
             BPCombo.Items.Clear();
-            foreach (KeyValuePair<int,string> bp in knl_breakpoints)
+            foreach (KeyValuePair<int, string> bp in knl_breakpoints)
             {
                 BPCombo.Items.Add(bp.Value);
             }
@@ -772,7 +770,7 @@ namespace FoenixIDE.UI
 
         private void LocationInput_Validated(object sender, EventArgs e)
         {
-            int jumpAddress = Convert.ToInt32(this.locationInput.Text.Replace(":",""), 16);
+            int jumpAddress = Convert.ToInt32(this.locationInput.Text.Replace(":", ""), 16);
             String address = jumpAddress.ToString("X6");
             locationInput.Text = address.Substring(0, 2) + ":" + address.Substring(2);
         }
@@ -876,7 +874,7 @@ namespace FoenixIDE.UI
 
             // Read Interrupt Register 1
             byte reg1 = kernel.MemMgr.INTERRUPT.ReadByte(1);
-            if (SDCardCheckBox.Checked && (reg1 & (byte)Register1.FNX1_INT07_SDCARD ) != 0)
+            if (SDCardCheckBox.Checked && (reg1 & (byte)Register1.FNX1_INT07_SDCARD) != 0)
             {
                 return true;
             }

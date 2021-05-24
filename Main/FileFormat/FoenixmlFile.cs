@@ -1,11 +1,6 @@
-﻿using FoenixIDE.MemoryLocations;
-using FoenixIDE.Simulator.Devices;
-using FoenixIDE.Simulator.FileFormat;
-using FoenixIDE.UI;
+﻿using FoenixIDE.Simulator.Devices;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace FoenixIDE.Simulator.FileFormat
@@ -176,7 +171,7 @@ namespace FoenixIDE.Simulator.FileFormat
             xmlWriter.Close();
         }
 
-        public  void WriteWatches(string filename)
+        public void WriteWatches(string filename)
         {
             XmlWriter xmlWriter = XmlWriter.Create(filename);
             string tabs = "\t\t\t\t\t\t\t\t";
@@ -338,7 +333,7 @@ namespace FoenixIDE.Simulator.FileFormat
                                 codeList.Remove(address);
                             }
                             codeList.Add(address, code);
-                         
+
                         }
                         continue;
                     }
@@ -375,7 +370,7 @@ namespace FoenixIDE.Simulator.FileFormat
 
         public void LoadMemory(String address, String values)
         {
-            int addr = Convert.ToInt32(address.Replace("$",""), 16);
+            int addr = Convert.ToInt32(address.Replace("$", ""), 16);
             //Each byte is written as 3 characters (2 Hex and a space)
             if (values.Length % 3 == 0)
             {

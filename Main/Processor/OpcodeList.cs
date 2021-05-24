@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace FoenixIDE.Processor
 {
@@ -271,7 +267,7 @@ namespace FoenixIDE.Processor
         public const int SBC_AbsoluteLongIndexedWithX = 0xFF;
 
         #endregion constants
-        
+
         public OpcodeList(Operations operations, CPU CPU)
         {
             Add(new OpCode(0x00, "BRK", 2, AddressModes.Interrupt, new OpCode.ExecuteDelegate(operations.ExecuteInterrupt)));

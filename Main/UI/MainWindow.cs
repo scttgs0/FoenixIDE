@@ -1,25 +1,18 @@
 ﻿using FoenixIDE.Basic;
+using FoenixIDE.CharEditor;
+using FoenixIDE.Display;
 using FoenixIDE.MemoryLocations;
 using FoenixIDE.Simulator.Devices;
 using FoenixIDE.Simulator.Devices.SDCard;
 using FoenixIDE.Simulator.FileFormat;
 using FoenixIDE.Simulator.UI;
-using FoenixIDE.CharEditor;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using FoenixIDE.Timers;
 using System.IO;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
-using System.Net;
-using FoenixIDE.Display;
-using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace FoenixIDE.UI
 {
@@ -204,7 +197,7 @@ namespace FoenixIDE.UI
                 debugWindow.Left = Screen.PrimaryScreen.WorkingArea.Width - debugWindow.Width;
                 debugWindow.SetKernel(kernel);
                 debugWindow.Show();
-            } 
+            }
             else
             {
                 debugWindow.SetKernel(kernel);
@@ -251,7 +244,7 @@ namespace FoenixIDE.UI
             {
                 uploaderWindow = new UploaderWindow();
                 int left = this.Left + (this.Width - uploaderWindow.Width) / 2;
-                int top =  this.Top + (this.Height - uploaderWindow.Height) / 2;
+                int top = this.Top + (this.Height - uploaderWindow.Height) / 2;
                 uploaderWindow.Location = new Point(left, top);
                 uploaderWindow.kernel = kernel;
                 uploaderWindow.SetBoardVersion(version);
@@ -314,7 +307,7 @@ namespace FoenixIDE.UI
         {
             // Check if the interrupt is enabled
             byte mask = kernel.MemMgr.ReadByte(MemoryLocations.MemoryMap.INT_MASK_REG0);
-           // if (!kernel.CPU.DebugPause && !kernel.CPU.Flags.IrqDisable && ((~mask & (byte)Register0.FNX0_INT01_SOL) == (byte)Register0.FNX0_INT01_SOL))
+            // if (!kernel.CPU.DebugPause && !kernel.CPU.Flags.IrqDisable && ((~mask & (byte)Register0.FNX0_INT01_SOL) == (byte)Register0.FNX0_INT01_SOL))
             if (!kernel.CPU.DebugPause && ((~mask & (byte)Register0.FNX0_INT01_SOL) == (byte)Register0.FNX0_INT01_SOL))
             {
                 // Set the SOL Interrupt
@@ -453,7 +446,7 @@ namespace FoenixIDE.UI
             if (statusStrip1.InvokeRequired)
             {
                 var d = new WriteCPSFPSFunction(Write_CPS_FPS_Safe);
-                statusStrip1.Invoke(d, new object[] { CPS, FPS});
+                statusStrip1.Invoke(d, new object[] { CPS, FPS });
 
             }
             else
@@ -468,13 +461,13 @@ namespace FoenixIDE.UI
         DateTime previousTime = DateTime.Now;
         private void Gpu_Update_Cps_Fps()
         {
-            if (kernel != null  && kernel.CPU != null)
+            if (kernel != null && kernel.CPU != null)
             {
                 DateTime currentTime = DateTime.Now;
 
                 if (!kernel.CPU.DebugPause)
                 {
-                    
+
                     TimeSpan s = currentTime - previousTime;
                     int currentCounter = kernel.CPU.CycleCounter;
                     int currentFrame = gpu.paintCycle;
@@ -527,7 +520,7 @@ namespace FoenixIDE.UI
          * Restart the CPU
          */
         public void RestartMenuItemClick(object sender, EventArgs e)
-        {           
+        {
             previousCounter = 0;
             debugWindow.Pause();
             if (kernel.ResetCPU(null))
@@ -543,7 +536,7 @@ namespace FoenixIDE.UI
                 debugWindow.RunButton_Click(null, null);
             }
         }
-        
+
         /** 
          * Reset the system and go to step mode.
          */
@@ -691,7 +684,7 @@ namespace FoenixIDE.UI
             tileEditor.Dispose();
             tileEditor = null;
         }
-        
+
         private void TileEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (tileEditor == null)
@@ -733,7 +726,7 @@ namespace FoenixIDE.UI
             double ratioH = gpu.Height / (double)size.Y;
             if (gpu.TileEditorMode)
             {
-                if ((e.X / ratioW > 32 && e.X / ratioW < size.X -32) && (e.Y / ratioH > 32 && e.Y / ratioH < size.Y -32))
+                if ((e.X / ratioW > 32 && e.X / ratioW < size.X - 32) && (e.Y / ratioH > 32 && e.Y / ratioH < size.Y - 32))
                 {
                     this.Cursor = Cursors.Hand;
                     if (e.Button == MouseButtons.Left)
@@ -786,13 +779,13 @@ namespace FoenixIDE.UI
 
             kernel.MemMgr.VICKY.WriteWord(0x702, X);
             kernel.MemMgr.VICKY.WriteWord(0x704, Y);
-            
+
             // Generate three interrupts - to emulate how the PS/2 controller works
             byte mask = kernel.MemMgr.ReadByte(MemoryLocations.MemoryMap.INT_MASK_REG0);
             // The PS/2 packet is byte0, xm, ym
             if ((~mask & (byte)Register0.FNX0_INT07_MOUSE) == (byte)Register0.FNX0_INT07_MOUSE)
             {
-                kernel.MemMgr.KEYBOARD.MousePackets((byte)(8+(middle?4:0)+ (right?2:0) + (left?1:0)) , (byte)(X & 0xFF), (byte)(Y & 0xFF));
+                kernel.MemMgr.KEYBOARD.MousePackets((byte)(8 + (middle ? 4 : 0) + (right ? 2 : 0) + (left ? 1 : 0)), (byte)(X & 0xFF), (byte)(Y & 0xFF));
             }
         }
 
@@ -805,7 +798,7 @@ namespace FoenixIDE.UI
             this.Cursor = Cursors.Default;
         }
 
-        
+
 
 
         private void Gpu_MouseEnter(object sender, EventArgs e)
@@ -855,10 +848,10 @@ namespace FoenixIDE.UI
                 kernel.MemMgr.SDCARD.isPresent = true;
                 kernel.MemMgr.SDCARD.SetISOMode(ISOMode);
                 sdCardStat = 1;
-               
+
                 kernel.MemMgr.SDCARD.SetCapacity(capacity);
                 kernel.MemMgr.SDCARD.SetClusterSize(clusterSize);
-                
+
                 if ("FAT12".Equals(fsType))
                 {
                     kernel.MemMgr.SDCARD.SetFSType(FSType.FAT12);
@@ -920,7 +913,7 @@ namespace FoenixIDE.UI
             else if (version == BoardVersion.RevU)
             {
                 version = BoardVersion.RevUPlus;
-            }   
+            }
             else
             {
                 version = BoardVersion.RevB;
@@ -990,7 +983,7 @@ namespace FoenixIDE.UI
             int textOffset = 24;
             int switchWidth = (label.Width - textOffset) / 8;
             int switchID = (e.X - 24) / switchWidth;
-           
+
             if (switchID < 8)
             {
                 // get current status and toggle it
@@ -1098,7 +1091,7 @@ namespace FoenixIDE.UI
                 HexFile.Load(temporaryRAM, dialog.FileName, 0, out int DataStartAddress, out int DataLength);
                 // write the file
                 string outputFileName = Path.ChangeExtension(dialog.FileName, "PGX");
-                
+
                 byte[] buffer = new byte[DataLength];
                 temporaryRAM.CopyIntoBuffer(DataStartAddress, buffer, 0, DataLength);
                 using (BinaryWriter writer = new BinaryWriter(File.Open(outputFileName, FileMode.Create)))
@@ -1205,7 +1198,7 @@ namespace FoenixIDE.UI
                         done = true;
                         break;
                     }
-                }                
+                }
             }
             else
             {

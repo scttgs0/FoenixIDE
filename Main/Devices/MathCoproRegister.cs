@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FoenixIDE.Simulator.Devices
+﻿namespace FoenixIDE.Simulator.Devices
 {
     /**
      * This class will automatically call other methods immediately after writes

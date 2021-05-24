@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FoenixIDE.MemoryLocations
+﻿namespace FoenixIDE.MemoryLocations
 {
     public static partial class MemoryMap
     {
@@ -12,7 +6,7 @@ namespace FoenixIDE.MemoryLocations
         // c# Memory Blocks
 
         public const int RAM_START = 0x00_0000; // Beginning of 2MB RAM
-        public const int RAM_SIZE =  0x20_0000; // 2MB RAM
+        public const int RAM_SIZE = 0x20_0000; // 2MB RAM
         public const int PAGE_SIZE = 0x1_0000;  // 64KB
 
         // Beginning of Vicky Address Space

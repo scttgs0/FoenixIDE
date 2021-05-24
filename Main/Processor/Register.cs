@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoenixIDE.Processor
 {
@@ -281,7 +277,8 @@ namespace FoenixIDE.Processor
             return _LV | Address;
         }
 
-        public override int Value {
+        public override int Value
+        {
             get => base.Value;
             set
             {

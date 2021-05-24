@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FoenixIDE.Simulator.Devices
+﻿namespace FoenixIDE.Simulator.Devices
 {
-    public class UART: MemoryLocations.MemoryRAM
+    public class UART : MemoryLocations.MemoryRAM
     {
         private const int RxTxBuffer = 0;
         private const int InterruptEnable = 1;
@@ -128,7 +122,7 @@ namespace FoenixIDE.Simulator.Devices
 
         public override byte ReadByte(int Address)
         {
-            switch(Address)
+            switch (Address)
             {
                 case LineStatus:
                     return 0x21;

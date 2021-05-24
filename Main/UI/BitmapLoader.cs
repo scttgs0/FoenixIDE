@@ -2,15 +2,8 @@
 using FoenixIDE.Simulator.FileFormat;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.IO.Ports;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static FoenixIDE.UI.MainWindow;
 
 namespace FoenixIDE.UI
 {
@@ -162,7 +155,7 @@ namespace FoenixIDE.UI
                 Memory.WriteByte(baseAddress + 3, (byte)((offsetAddress & 0xFF_0000) >> 16));
                 // TODO: set the position of the sprite
             }
-            
+
             ResourceChecker.Resource res = new ResourceChecker.Resource
             {
                 StartAddress = destAddress,

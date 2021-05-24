@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FoenixIDE.Simulator.Devices
+﻿namespace FoenixIDE.Simulator.Devices
 {
     public class VDMA : MemoryLocations.MemoryRAM
     {
@@ -90,7 +83,7 @@ namespace FoenixIDE.Simulator.Devices
                     byte transferByte = ReadByte(1); // Address $AF:0401
 
                     // Linear or 2D
-                    if (!isDestTransfer2D) 
+                    if (!isDestTransfer2D)
                     {
                         int size1DTransfer = isSystemDest ? ReadLong(0x28) : ReadLong(8); // Address $AF:0408 - maximum 4MB
                         if (Video != null)
@@ -138,7 +131,7 @@ namespace FoenixIDE.Simulator.Devices
                             }
                         }
                     }
-                    
+
                     // Transfer data from memory to VRAM
                     if (!isDestTransfer2D)
                     {
@@ -165,7 +158,7 @@ namespace FoenixIDE.Simulator.Devices
                 // Raise an interrupt
                 if ((Value & 8) == 8)
                 {
-                
+
                 }
             }
         }

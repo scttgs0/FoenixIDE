@@ -1,13 +1,8 @@
 ﻿using FoenixIDE.MemoryLocations;
-using FoenixIDE.UI;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FoenixIDE.Simulator.UI
@@ -106,7 +101,7 @@ namespace FoenixIDE.Simulator.UI
             frameBuffer.Dispose();
             if (hoverX > -1 && hoverY > -1)
             {
-                e.Graphics.DrawRectangle(whitePen, hoverX * TILE_WIDTH-1, hoverY * TILE_WIDTH-1, TILE_WIDTH+2, TILE_WIDTH+2);
+                e.Graphics.DrawRectangle(whitePen, hoverX * TILE_WIDTH - 1, hoverY * TILE_WIDTH - 1, TILE_WIDTH + 2, TILE_WIDTH + 2);
                 e.Graphics.DrawRectangle(yellowPen, hoverX * TILE_WIDTH, hoverY * TILE_WIDTH, TILE_WIDTH, TILE_WIDTH);
                 e.Graphics.DrawString((hoverY * 16 + hoverX).ToString("X2"), SystemFonts.DefaultFont, whiteBrush, hoverX * TILE_WIDTH, hoverY * TILE_WIDTH + 2);
             }
@@ -226,7 +221,7 @@ namespace FoenixIDE.Simulator.UI
         private void LutList_SelectedIndexChanged(object sender, EventArgs e)
         {
             int tilesetBaseAddr = MemoryLocations.MemoryMap.TILESET_BASE_ADDR + TilesetList.SelectedIndex * 4;
-            byte ConfigRegister = (byte)((Stride256Checkbox.Checked? 8:0) + LutList.SelectedIndex);
+            byte ConfigRegister = (byte)((Stride256Checkbox.Checked ? 8 : 0) + LutList.SelectedIndex);
             MemMgr.WriteByte(tilesetBaseAddr + 3, ConfigRegister);
             TilesetViewer.Refresh();
         }

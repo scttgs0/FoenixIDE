@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FoenixIDE.CharEditor
@@ -19,7 +13,8 @@ namespace FoenixIDE.CharEditor
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog f = new SaveFileDialog {
+            SaveFileDialog f = new SaveFileDialog
+            {
                 Filter = "ROM file|*.bin|PNG Image|*.png|BMP Image|*.bmp|All Files|*.*"
             };
             if (f.ShowDialog() == DialogResult.OK)

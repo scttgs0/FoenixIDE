@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FoenixIDE.Simulator.Devices
+﻿namespace FoenixIDE.Simulator.Devices
 {
-    public class InterruptController: MemoryLocations.MemoryRAM
+    public class InterruptController : MemoryLocations.MemoryRAM
     {
-        public InterruptController(int StartAddress, int Length): base(StartAddress, Length)
+        public InterruptController(int StartAddress, int Length) : base(StartAddress, Length)
         {
 
         }
@@ -30,7 +25,7 @@ namespace FoenixIDE.Simulator.Devices
         // When GABE writes to the register
         public void WriteFromGabe(int Address, byte Value)
         {
-            
+
             data[Address] = Value;
         }
     }

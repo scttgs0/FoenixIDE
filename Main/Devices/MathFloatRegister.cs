@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoenixIDE.Simulator.Devices
 {
@@ -60,7 +56,7 @@ namespace FoenixIDE.Simulator.Devices
             try
             {
                 FPDiv = input0 / input1;
-                outputData[5] = (byte)(((FPDiv == 0) ? 8 : 0) + ((FPDiv is float.NaN) ? 1 : 0 ));
+                outputData[5] = (byte)(((FPDiv == 0) ? 8 : 0) + ((FPDiv is float.NaN) ? 1 : 0));
             }
             catch (DivideByZeroException)
             {

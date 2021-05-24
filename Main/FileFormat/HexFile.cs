@@ -31,7 +31,7 @@ namespace FoenixIDE.Simulator.FileFormat
                     return null;
                 }
             }
-                
+
 
             string[] lines = System.IO.File.ReadAllLines(processedFileName);
 
@@ -69,7 +69,7 @@ namespace FoenixIDE.Simulator.FileFormat
                                     address++;
                                 }
                             }
-                            
+
                             break;
 
                         // end of file - just ignore

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
-
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FoenixIDE.Simulator.UI
@@ -26,7 +20,7 @@ namespace FoenixIDE.Simulator.UI
 
         private void AboutFrom_Load(object sender, EventArgs e)
         {
-            
+
             label1.Text = "Foenix IDE Version " + AppVersion();
         }
 

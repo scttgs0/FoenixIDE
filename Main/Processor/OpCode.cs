@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Threading.Tasks;
-using FoenixIDE;
 
 namespace FoenixIDE.Processor
 {
@@ -68,11 +63,11 @@ namespace FoenixIDE.Processor
         {
             string arg, sig;
             if (this.Length == 3)
-                sig = "$"+Signature.ToString("X4");
+                sig = "$" + Signature.ToString("X4");
             else if (this.Length == 4)
-                sig = "$"+Signature.ToString("X6");
+                sig = "$" + Signature.ToString("X6");
             else
-                sig = "$"+Signature.ToString("X2");
+                sig = "$" + Signature.ToString("X2");
 
             switch (this.AddressMode)
             {

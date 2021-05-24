@@ -1,8 +1,6 @@
 ﻿using FoenixIDE.UI;
 using System;
 using System.Collections.Generic;
-
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FoenixIDE
@@ -31,7 +29,7 @@ namespace FoenixIDE
             }
         }
 
-        private static Dictionary<String,String> DecodeProgramArguments(string[] args)
+        private static Dictionary<String, String> DecodeProgramArguments(string[] args)
         {
             Dictionary<string, string> context = new Dictionary<string, string>
             {
@@ -72,7 +70,7 @@ namespace FoenixIDE
                     case "-r":
                     case "--run":
                         string runValue = "true";
-                        if (args.Length > (i + 1) && !args[i+1].StartsWith("-"))
+                        if (args.Length > (i + 1) && !args[i + 1].StartsWith("-"))
                         {
                             runValue = args[i + 1];
                             if (!"true".Equals(runValue) && !"false".Equals(runValue))

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FoenixIDE.MemoryLocations
+﻿namespace FoenixIDE.MemoryLocations
 {
     public static partial class MemoryMap
     {
@@ -43,11 +37,11 @@ namespace FoenixIDE.MemoryLocations
 
         public const int MOUSE_PTR_REG = 0xAF_0700;
 
-        public const int C256F_MODEL_MAJOR =    0xAF_070B;
-        public const int C256F_MODEL_MINOR =    0xAF_070C ;
-        public const int FPGA_DOR =             0xAF_070D ;
-        public const int FPGA_MOR =             0xAF_070E ;
-        public const int FPGA_YOR =             0xAF_070F ;
+        public const int C256F_MODEL_MAJOR = 0xAF_070B;
+        public const int C256F_MODEL_MINOR = 0xAF_070C;
+        public const int FPGA_DOR = 0xAF_070D;
+        public const int FPGA_MOR = 0xAF_070E;
+        public const int FPGA_YOR = 0xAF_070F;
 
         public const int RTC_SEC = 0xAF_0800; // Seconds Register
         public const int RTC_SEC_ALARM = 0xAF_0801; // Seconds Alarm Register

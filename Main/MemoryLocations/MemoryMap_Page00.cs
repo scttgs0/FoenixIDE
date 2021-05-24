@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FoenixIDE.MemoryLocations
+﻿namespace FoenixIDE.MemoryLocations
 {
     public static partial class MemoryMap
     {
@@ -64,10 +58,10 @@ namespace FoenixIDE.MemoryLocations
         public const int INT_PENDING_REG3 = 0x00_0143; // FMX Model
 
         // Polarity Set
-        public const int INT_POL_REG0 = 0x00_0144 ;
-        public const int INT_POL_REG1 = 0x00_0145 ;
-        public const int INT_POL_REG2 = 0x00_0146 ;
-        public const int INT_POL_REG7 = 0x00_0147 ; // FMX Model
+        public const int INT_POL_REG0 = 0x00_0144;
+        public const int INT_POL_REG1 = 0x00_0145;
+        public const int INT_POL_REG2 = 0x00_0146;
+        public const int INT_POL_REG7 = 0x00_0147; // FMX Model
 
         // Edge Detection Enable
         public const int INT_EDGE_REG0 = 0x00_0148;
@@ -81,19 +75,19 @@ namespace FoenixIDE.MemoryLocations
         public const int INT_MASK_REG3 = 0x00_014F; // FMX Model
 
         public const int TIMER0_CTRL_REG = 0x00_0160;
-        public const int TIMER0_CHARGE   = 0x00_0161;
-        public const int TIMER0_CMP_REG  = 0x00_0164;
-        public const int TIMER0_CMP      = 0x00_0165;
+        public const int TIMER0_CHARGE = 0x00_0161;
+        public const int TIMER0_CMP_REG = 0x00_0164;
+        public const int TIMER0_CMP = 0x00_0165;
 
         public const int TIMER1_CTRL_REG = 0x00_0168;
-        public const int TIMER1_CHARGE   = 0x00_0169;
-        public const int TIMER1_CMP_REG  = 0x00_016C;
-        public const int TIMER1_CMP      = 0x00_016D;
+        public const int TIMER1_CHARGE = 0x00_0169;
+        public const int TIMER1_CMP_REG = 0x00_016C;
+        public const int TIMER1_CMP = 0x00_016D;
 
         public const int TIMER2_CTRL_REG = 0x00_0170;
-        public const int TIMER2_CHARGE   = 0x00_0171;
-        public const int TIMER2_CMP_REG  = 0x00_0174;
-        public const int TIMER2_CMP      = 0x00_0175;
+        public const int TIMER2_CHARGE = 0x00_0171;
+        public const int TIMER2_CMP_REG = 0x00_0174;
+        public const int TIMER2_CMP = 0x00_0175;
 
 
         public const int VECTOR_STATE = 0x0001FF; // 1 Byte Interrupt Vector State. See VECTOR_STATE_ENUM

@@ -3,16 +3,11 @@ using FoenixIDE.Simulator.Devices;
 using FoenixIDE.Simulator.FileFormat;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.IO.Ports;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Timer = System.Windows.Forms.Timer;
 
 namespace FoenixIDE.UI
 {
@@ -144,7 +139,7 @@ namespace FoenixIDE.UI
                 if (Path.GetExtension(filename).ToUpper().Equals(".BIN"))
                 {
                     FileInfo f = new FileInfo(filename);
-                    flen = f.Length;   
+                    flen = f.Length;
                 }
                 else
                 {
@@ -194,7 +189,7 @@ namespace FoenixIDE.UI
                 ReflashCheckbox.Enabled = extension.ToUpper().Equals(".BIN");
                 // Display the file length
                 long flen = GetFileLength(openFileDlg.FileName);
-                    
+
                 SendBinaryButton.Enabled = (flen != -1) && !ConnectButton.Visible;
             }
         }
@@ -219,7 +214,7 @@ namespace FoenixIDE.UI
                 string extension = Path.GetExtension(FileNameTextBox.Text).ToUpper();
                 C256DestAddress.Enabled = (transmissionSize > 0 || BlockSendRadio.Checked) && (extension.Equals(".BIN") || ReflashCheckbox.Checked);
             }
-            
+
 
             C256SrcSize.Enabled = FetchRadio.Checked;
             C256SrcAddress.Enabled = FetchRadio.Checked;
@@ -304,7 +299,7 @@ namespace FoenixIDE.UI
                                             DataBuffer[i / 2] = (byte)HexFile.GetByte(data, i, 1);
                                         }
                                         PreparePacket2Write(DataBuffer, bank + address, 0, length);
-                                        
+
                                         // TODO - make this backward compatible
                                         if (bank + address >= (BaseBankAddress + 0xFF00) && (bank + address) < (BaseBankAddress + 0xFFFF))
                                         {
@@ -373,7 +368,7 @@ namespace FoenixIDE.UI
                 {
                     GetFnxInDebugMode();
                 }
-                int blockAddress = Convert.ToInt32(EmuSrcAddress.Text.Replace(":",""), 16);
+                int blockAddress = Convert.ToInt32(EmuSrcAddress.Text.Replace(":", ""), 16);
                 // Read the data directly from emulator memory
                 int offset = 0;
                 int FnxAddressPtr = int.Parse(C256DestAddress.Text.Replace(":", ""), System.Globalization.NumberStyles.AllowHexSpecifier);
@@ -406,7 +401,7 @@ namespace FoenixIDE.UI
                     MemoryWindow tempMem = new MemoryWindow
                     {
                         Memory = mem,
-                        Text = "C256 Memory from " + blockAddress.ToString("X6") + 
+                        Text = "C256 Memory from " + blockAddress.ToString("X6") +
                             " to " + (blockAddress + transmissionSize - 1).ToString("X6")
                     };
                     tempMem.GotoAddress(blockAddress);
@@ -523,7 +518,7 @@ namespace FoenixIDE.UI
         {
             bool success = false;
             byte[] partialBuffer;
-            
+
             try
             {
                 if (serial.IsOpen)
@@ -532,7 +527,7 @@ namespace FoenixIDE.UI
                     {
                         GetFnxInDebugMode();
                     }
-                    
+
                     if (size < 2048)
                     {
                         partialBuffer = PreparePacket2Read(startAddress, size);
@@ -681,7 +676,7 @@ namespace FoenixIDE.UI
             Stat0 = 0;
             Stat1 = 0;
             LRC = 0;
-            
+
             if (delay > 2000)
             {
                 serial.ReadTimeout = delay;

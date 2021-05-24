@@ -1225,7 +1225,7 @@ namespace FoenixIDE.UI
             }
         }
 
-        private void autorunEmulatorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AutorunEmulatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Simulator.Properties.Settings.Default.Autorun = autorunEmulatorToolStripMenuItem.Checked;
             Simulator.Properties.Settings.Default.Save();

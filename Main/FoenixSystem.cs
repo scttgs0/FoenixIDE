@@ -85,8 +85,8 @@ namespace FoenixIDE
             // Assign memory variables used by other processes
             CPU = new CPU(MemMgr);
 
-            MemMgr.VDMA.setVideoRam(MemMgr.VIDEO);
-            MemMgr.VDMA.setSystemRam(MemMgr.RAM);
+            MemMgr.VDMA.SetVideoRam(MemMgr.VIDEO);
+            MemMgr.VDMA.SetSystemRam(MemMgr.RAM);
             MemMgr.GABE.WriteByte(MemoryMap.GABE_SYS_STAT - MemoryMap.GABE_START, SystemStat);
 
             // Load the kernel.hex if present

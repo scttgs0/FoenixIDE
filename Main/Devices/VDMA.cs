@@ -9,12 +9,12 @@
         {
         }
 
-        public void setVideoRam(MemoryLocations.MemoryRAM vram)
+        public void SetVideoRam(MemoryLocations.MemoryRAM vram)
         {
             Video = vram;
         }
 
-        public void setSystemRam(MemoryLocations.MemoryRAM vram)
+        public void SetSystemRam(MemoryLocations.MemoryRAM vram)
         {
             System = vram;
         }

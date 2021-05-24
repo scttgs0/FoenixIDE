@@ -226,7 +226,7 @@ namespace FoenixIDE.UI
         {
             SendBinaryButton.Enabled = false;
             DisconnectButton.Enabled = false;
-            hideLabelTimer_Tick(null, null);
+            HideLabelTimer_Tick(null, null);
             int transmissionSize = GetTransmissionSize();
             UploadProgressBar.Maximum = transmissionSize;
             UploadProgressBar.Value = 0;
@@ -420,13 +420,12 @@ namespace FoenixIDE.UI
             hideLabelTimer.Enabled = true;
         }
 
-        private void hideLabelTimer_Tick(object sender, EventArgs e)
+        private void HideLabelTimer_Tick(object sender, EventArgs e)
         {
             hideLabelTimer.Enabled = false;
             CountdownLabel.Visible = false;
             CountdownLabel.Text = "";
         }
-
 
         private byte Checksum(byte[] buffer, int length)
         {

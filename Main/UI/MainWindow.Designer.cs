@@ -463,7 +463,7 @@ namespace FoenixIDE.UI
             this.autorunEmulatorToolStripMenuItem.Name = "autorunEmulatorToolStripMenuItem";
             this.autorunEmulatorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.autorunEmulatorToolStripMenuItem.Text = "Autorun Emulator";
-            this.autorunEmulatorToolStripMenuItem.Click += new System.EventHandler(this.autorunEmulatorToolStripMenuItem_Click);
+            this.autorunEmulatorToolStripMenuItem.Click += new System.EventHandler(this.AutorunEmulatorToolStripMenuItem_Click);
             // 
             // MainWindow
             // 

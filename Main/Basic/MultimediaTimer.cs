@@ -57,7 +57,7 @@ namespace FoenixIDE.Timers
         /// <param name="fuEvent">The fu event.</param>
         /// <returns></returns>
         [DllImport("Winmm.dll", CharSet = CharSet.Auto)]
-        private static extern uint TimeSetEvent(uint uDelay, uint uResolution,
+        private static extern uint timeSetEvent(uint uDelay, uint uResolution,
                       TimerCallback lpTimeProc, UIntPtr dwUser, uint fuEvent);
 
         /// <summary>
@@ -66,14 +66,14 @@ namespace FoenixIDE.Timers
         /// <param name="uTimerID">The u timer ID.</param>
         /// <returns></returns>
         [DllImport("Winmm.dll", CharSet = CharSet.Auto)]
-        private static extern uint TimeKillEvent(uint uTimerID);
+        private static extern uint timeKillEvent(uint uTimerID);
 
         /// <summary>
         /// Times the get time.
         /// </summary>
         /// <returns></returns>
         [DllImport("Winmm.dll", CharSet = CharSet.Auto)]
-        private static extern uint TimeGetTime();
+        private static extern uint timeGetTime();
 
         /// <summary>
         /// Times the begin period.
@@ -81,7 +81,7 @@ namespace FoenixIDE.Timers
         /// <param name="uPeriod">The u period.</param>
         /// <returns></returns>
         [DllImport("Winmm.dll", CharSet = CharSet.Auto)]
-        private static extern uint TimeBeginPeriod(uint uPeriod);
+        private static extern uint timeBeginPeriod(uint uPeriod);
 
         /// <summary>
         /// Times the end period.
@@ -89,7 +89,7 @@ namespace FoenixIDE.Timers
         /// <param name="uPeriod">The u period.</param>
         /// <returns></returns>
         [DllImport("Winmm.dll", CharSet = CharSet.Auto)]
-        private static extern uint TimeEndPeriod(uint uPeriod);
+        private static extern uint timeEndPeriod(uint uPeriod);
 
         // Use this to pin the timerCallback functions to avoid improper garbage collection
         private GCHandle _gcHandle;
@@ -265,7 +265,7 @@ namespace FoenixIDE.Timers
                 FuEvent f = FuEvent.TIME_CALLBACK_FUNCTION | (AutoReset ?
                                  FuEvent.TIME_PERIODIC : FuEvent.TIME_ONESHOT);
 
-                id = TimeSetEvent(Interval, 0, timerCallback, UIntPtr.Zero,
+                id = timeSetEvent(Interval, 0, timerCallback, UIntPtr.Zero,
                                                                       (uint)f);
                 if (id == 0)
                 {
@@ -288,7 +288,7 @@ namespace FoenixIDE.Timers
             {
                 if (id != 0)
                 {
-                    _ = TimeKillEvent(id);
+                    _ = timeKillEvent(id);
                     Debug.WriteLine("MultimediaTimer " + id.ToString() + " stopped");
                     id = 0;
                     Enabled = false;

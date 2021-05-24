@@ -161,7 +161,7 @@ namespace FoenixIDE.CharEditor
                 for (int x = 0; x < Columns; x++)
                 {
                     int bit = (int)Math.Pow(2, (Columns - x - 1));
-                    row = row | (grid[x, y] ? bit : 0);
+                    row |= (grid[x, y] ? bit : 0);
                 }
                 characterData[y] = (byte)row;
             }

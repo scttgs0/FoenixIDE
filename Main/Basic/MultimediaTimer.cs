@@ -112,8 +112,9 @@ namespace FoenixIDE.Timers
             /// <summary>
             ///  callback is function
             /// </summary>
+#pragma warning disable CA1069 // Enums values should not be duplicated
             TIME_CALLBACK_FUNCTION = 0x0000,
-
+#pragma warning restore CA1069 // Enums values should not be duplicated
         }
 
         /// <summary>
@@ -287,7 +288,7 @@ namespace FoenixIDE.Timers
             {
                 if (id != 0)
                 {
-                    TimeKillEvent(id);
+                    _ = TimeKillEvent(id);
                     Debug.WriteLine("MultimediaTimer " + id.ToString() + " stopped");
                     id = 0;
                     Enabled = false;
@@ -300,10 +301,7 @@ namespace FoenixIDE.Timers
         /// </summary>
         protected virtual void OnTimer()
         {
-            if (Elapsed != null)
-            {
-                Elapsed(this, new MultimediaElapsedEventArgs());
-            }
+            Elapsed?.Invoke(this, new MultimediaElapsedEventArgs());
         }
 
         /// <summary>

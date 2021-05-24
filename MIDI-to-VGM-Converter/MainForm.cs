@@ -284,7 +284,7 @@ namespace MIDI_to_VGM_Converter
                     break;
                 case 5:
                     string lyric = ReadText(ptr, length);
-                    sb.Append("Lyric Name: ").Append(lyric.ToString());
+                    sb.Append("Lyric Name: ").Append(lyric);
                     break;
                 case 6:
                     string marker = ReadText(ptr, length);
@@ -296,11 +296,11 @@ namespace MIDI_to_VGM_Converter
                     break;
                 case 0x20:
                     byte channel = buffer[ptr];
-                    sb.Append("Channel Event: ").Append(channel.ToString());
+                    sb.Append("Channel Event: ").Append(channel);
                     break;
                 case 0x21:
                     byte port = buffer[ptr];
-                    sb.Append("MIDI Port: ").Append(port.ToString());
+                    sb.Append("MIDI Port: ").Append(port);
                     break;
                 case 0x2F:
                     sb.Append("End of Track Event");
@@ -315,7 +315,7 @@ namespace MIDI_to_VGM_Converter
                     break;
                 case 0x54:
                     int SMPTEOffset = 0; // hr mn se fr ff
-                    sb.Append("Set SMPTE Offset Event: ").Append(SMPTEOffset.ToString());
+                    sb.Append("Set SMPTE Offset Event: ").Append(SMPTEOffset);
                     break;
                 case 0x58:
                     TimeSignature ts = new()
@@ -412,7 +412,7 @@ namespace MIDI_to_VGM_Converter
             int offset = 0;
             while (offset < length)
             {
-                sb.Append(buffer[ptr + offset].ToString("X2")).Append(" ");
+                sb.Append(buffer[ptr + offset].ToString("X2")).Append(' ');
                 offset++;
             }
             return sb.ToString();
@@ -655,7 +655,7 @@ namespace MIDI_to_VGM_Converter
                 }
                 if (SingleChannel.SelectedIndex == 0 || (SingleChannel.SelectedIndex - 1 == ev.midiChannel))
                 {
-                    sb.Append(ev.index).Append("\t").Append(ev).AppendLine();
+                    sb.Append(ev.index).Append('\t').Append(ev).AppendLine();
                     byte[] partial = ev.GetBytes();
                     if (partial != null)
                     {
@@ -690,7 +690,7 @@ namespace MIDI_to_VGM_Converter
         }
 
         // prepare the VGM header
-        private byte[] GetVGMHeader(int totalWaits, int totalBytes, int gd3Length)
+        private static byte[] GetVGMHeader(int totalWaits, int totalBytes, int gd3Length)
         {
             byte[] vgmHeader = new byte[0x80];
             vgmHeader[0] = (byte)'V';
@@ -726,16 +726,18 @@ namespace MIDI_to_VGM_Converter
             // YMF262 clock
             int ymf262Clock = 14318180;
             BitConverter.GetBytes(ymf262Clock).CopyTo(vgmHeader, 0x5c);
+
             return vgmHeader;
         }
 
-        private byte[] CreateGD3()
+        private static byte[] CreateGD3()
         {
             byte[] buffer = new byte[100];
             buffer[0] = (byte)'G';
             buffer[1] = (byte)'d';
             buffer[2] = (byte)'3';
             buffer[3] = (byte)' ';
+
             return buffer;
         }
     }

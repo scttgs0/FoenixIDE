@@ -495,7 +495,7 @@ namespace FoenixIDE.UI
             }
         }
 
-        private byte BCD(int val)
+        private static byte BCD(int val)
         {
             return (byte)(val / 10 * 0x10 + val % 10);
         }
@@ -1093,16 +1093,14 @@ namespace FoenixIDE.UI
 
                 byte[] buffer = new byte[DataLength];
                 temporaryRAM.CopyIntoBuffer(DataStartAddress, buffer, 0, DataLength);
-                using (BinaryWriter writer = new(File.Open(outputFileName, FileMode.Create)))
-                {
-                    // 8 byte header
-                    writer.Write((byte)'P');
-                    writer.Write((byte)'G');
-                    writer.Write((byte)'X');
-                    writer.Write((byte)1);
-                    writer.Write(DataStartAddress);
-                    writer.Write(buffer);
-                }
+                using BinaryWriter writer = new(File.Open(outputFileName, FileMode.Create));
+                // 8 byte header
+                writer.Write((byte)'P');
+                writer.Write((byte)'G');
+                writer.Write((byte)'X');
+                writer.Write((byte)1);
+                writer.Write(DataStartAddress);
+                writer.Write(buffer);
             }
         }
 
@@ -1124,16 +1122,14 @@ namespace FoenixIDE.UI
                     // write the file
                     int DataStartAddress = Convert.ToInt32(StrAddress, 16);
                     string outputFileName = Path.ChangeExtension(dialog.FileName, "PGX");
-                    using (BinaryWriter writer = new(File.Open(outputFileName, FileMode.Create)))
-                    {
-                        // 8 byte header
-                        writer.Write((byte)'P');
-                        writer.Write((byte)'G');
-                        writer.Write((byte)'X');
-                        writer.Write((byte)1);
-                        writer.Write(DataStartAddress);
-                        writer.Write(buffer);
-                    }
+                    using BinaryWriter writer = new(File.Open(outputFileName, FileMode.Create));
+                    // 8 byte header
+                    writer.Write((byte)'P');
+                    writer.Write((byte)'G');
+                    writer.Write((byte)'X');
+                    writer.Write((byte)1);
+                    writer.Write(DataStartAddress);
+                    writer.Write(buffer);
                 }
                 else
                 {
@@ -1142,7 +1138,7 @@ namespace FoenixIDE.UI
             }
         }
 
-        private int VersionValue(string value)
+        private static int VersionValue(string value)
         {
             string[] parts = value.Split('.');
             int intValue = 0;

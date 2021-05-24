@@ -14,8 +14,7 @@ namespace FoenixIDE.Processor
         /// the value in 8 bit mode. If this is false, the value is hidden, but preserved. If this is true, 
         /// the top 8 bits are destroyed when the width is set to 8 bits. 
         /// </summary>
-        public bool DiscardUpper = false;
-        readonly string[] formatWidth = new string[] { "X", "X1", "X2", "X3", "X4" };
+        public bool DiscardUpper = true;
 
         //public enum int
         //{

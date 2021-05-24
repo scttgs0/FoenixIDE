@@ -331,7 +331,7 @@ namespace FoenixIDE.Processor
             PC = addr;
         }
 
-        public byte GetByte(int Value, int Offset)
+        public static byte GetByte(int Value, int Offset)
         {
             if (Offset == 0)
                 return (byte)(Value & 0xff);

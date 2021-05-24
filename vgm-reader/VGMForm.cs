@@ -317,7 +317,7 @@ namespace vgm_reader
          * | 1 | R0| R1| R2| X | FB|NF0|NF1|  -> Noise Source: FB =0 - Periodic Noise, 1 = White Noise
          * | 1 | R0| R1| 1 | A0| A1| A2| A3|  -> Attenuation
          */
-        private void DisplayPsg(StringBuilder s, byte value)
+        private static void DisplayPsg(StringBuilder s, byte value)
         {
             if ((value & 0x80) == 0x80)
             {
@@ -341,12 +341,12 @@ namespace vgm_reader
             }
         }
 
-        private void DisplayWait(StringBuilder s, int value)
+        private static void DisplayWait(StringBuilder s, int value)
         {
             s.Append("W:" + value).Append("\r\n");   
         }
 
-        private void DisplayError(StringBuilder s, string error)
+        private static void DisplayError(StringBuilder s, string error)
         {
             s.Append(error + "\r\n");
         }

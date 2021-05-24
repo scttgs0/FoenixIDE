@@ -50,7 +50,7 @@ namespace FoenixIDE.UI
                 foreach (KeyValuePair<int, string> kvp in knl_breakpoints)
                 {
                     BPCombo.Items.Add(kvp.Value);
-                    UpdateDebugLines(kvp.Key, true);
+                    UpdateDebugLines(true);
                 }
             }
             else
@@ -383,7 +383,7 @@ namespace FoenixIDE.UI
                 if (newValue > -1)
                 {
                     BPCombo.Text = knl_breakpoints.Format(newValue.ToString("X"));
-                    UpdateDebugLines(newValue, true);
+                    UpdateDebugLines(true);
                     BPLabel.Text = knl_breakpoints.Count.ToString() + " BP";
                 }
             }
@@ -394,7 +394,7 @@ namespace FoenixIDE.UI
             if (BPCombo.Text != "")
             {
                 knl_breakpoints.Remove(BPCombo.Text);
-                UpdateDebugLines(knl_breakpoints.GetIntFromHex(BPCombo.Text), false);
+                UpdateDebugLines(false);
                 BPCombo.Items.Remove(BPCombo.Text);
             }
             if (knl_breakpoints.Count == 0)
@@ -726,7 +726,7 @@ namespace FoenixIDE.UI
             codeList.Add(line);
         }
 
-        private void UpdateDebugLines(int newDebugLine, bool state)
+        private void UpdateDebugLines(bool state)
         {
             BPCombo.BeginUpdate();
             BPCombo.Items.Clear();

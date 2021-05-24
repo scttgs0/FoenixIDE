@@ -103,7 +103,7 @@ namespace FoenixIDE.Display
         /*
         * Display the text with a colored background. This should make the text more visible against bitmaps.
         */
-        private void DrawTextWithBackground(String text, Graphics g, Color backgroundColor, int x, int y)
+        private void DrawTextWithBackground(string text, Graphics g, int x, int y)
         {
             g.DrawString(text, this.Font, BackgroundTextBrush, x, y);
             g.DrawString(text, this.Font, BackgroundTextBrush, x + 2, y);
@@ -197,12 +197,12 @@ namespace FoenixIDE.Display
             {
                 if (ColumnsVisible < 1 || ColumnsVisible > MAX_TEXT_COLS)
                 {
-                    DrawTextWithBackground("ColumnsVisible invalid:" + ColumnsVisible.ToString(), g, Color.Black, 0, top);
+                    DrawTextWithBackground("ColumnsVisible invalid:" + ColumnsVisible.ToString(), g, 0, top);
                     top += 12;
                 }
                 if (LinesVisible < 1 || LinesVisible > MAX_TEXT_LINES)
                 {
-                    DrawTextWithBackground("LinesVisible invalid:" + LinesVisible.ToString(), g, Color.Black, 0, top);
+                    DrawTextWithBackground("LinesVisible invalid:" + LinesVisible.ToString(), g, 0, top);
                     top += 12;
                 }
             }

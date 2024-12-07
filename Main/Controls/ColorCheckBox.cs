@@ -46,14 +46,10 @@ namespace FoenixIDE.Simulator.Controls
             }
                 
             Rectangle rect = new Rectangle(new Point(0,0), box);
+            Rectangle fill = new Rectangle(new Point(3,3), new Size(Size.Width - 7, Size.Height - 7));
 
-            pevent.Graphics.FillRectangle(active ? Brushes.Crimson : Brushes.White, rect);
+            pevent.Graphics.FillRectangle(Checked ? Brushes.DarkSlateBlue : Brushes.White, fill);
 
-            if (Checked)
-            {
-                using (Font wing = new Font("Wingdings", 10f))
-                    pevent.Graphics.DrawString("ü", wing, foreBrush, -1, 0);
-            }
             pevent.Graphics.DrawRectangle(Pens.DarkSlateBlue, rect);
 
             Rectangle fRect = ClientRectangle;

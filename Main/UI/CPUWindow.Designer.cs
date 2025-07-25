@@ -342,9 +342,6 @@ namespace FoenixIDE.UI
             // 
             // HeaderTextbox
             // 
-            this.HeaderTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.HeaderTextbox.BackColor = System.Drawing.Color.Black;
             this.HeaderTextbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.HeaderTextbox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

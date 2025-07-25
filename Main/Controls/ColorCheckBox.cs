@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace FoenixIDE.Simulator.Controls
@@ -6,6 +7,7 @@ namespace FoenixIDE.Simulator.Controls
     class ColorCheckBox: CheckBox
     {
         private bool active;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool IsActive
         {
             get

@@ -6,7 +6,28 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="BoardRevision" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C</Value>
+      <Value Profile="(Default)">F256K</Value>
+    </Setting>
+    <Setting Name="SDCardPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SDCardCapacity" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="SDCardClusterSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">512</Value>
+    </Setting>
+    <Setting Name="SDCardFSType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">FAT32</Value>
+    </Setting>
+    <Setting Name="SDCardISOMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ViewWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">640</Value>
+    </Setting>
+    <Setting Name="ViewHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">480</Value>
     </Setting>
   </Settings>
 </SettingsFile>

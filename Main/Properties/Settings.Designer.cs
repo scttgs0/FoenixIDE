@@ -12,7 +12,7 @@ namespace FoenixIDE.Simulator.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.14.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -37,7 +37,7 @@ namespace FoenixIDE.Simulator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C")]
+        [global::System.Configuration.DefaultSettingValueAttribute("F256K")]
         public string BoardRevision {
             get {
                 return ((string)(this["BoardRevision"]));
@@ -46,6 +46,7 @@ namespace FoenixIDE.Simulator.Properties {
                 this["BoardRevision"] = value;
             }
         }
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
@@ -57,109 +58,76 @@ namespace FoenixIDE.Simulator.Properties {
                 this["SDCardPath"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("64")]
-        public int SDCardCapacity
-        {
-            get
-            {
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public int SDCardCapacity {
+            get {
                 return ((int)(this["SDCardCapacity"]));
             }
-            set
-            {
+            set {
                 this["SDCardCapacity"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("512")]
-        public int SDCardClusterSize
-        {
-            get
-            {
+        public int SDCardClusterSize {
+            get {
                 return ((int)(this["SDCardClusterSize"]));
             }
-            set
-            {
+            set {
                 this["SDCardClusterSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("FAT32")]
-        public string SDCardFSType
-        {
-            get
-            {
+        public string SDCardFSType {
+            get {
                 return ((string)(this["SDCardFSType"]));
             }
-            set
-            {
+            set {
                 this["SDCardFSType"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SDCardISOMode
-        {
-            get
-            {
+        public bool SDCardISOMode {
+            get {
                 return ((bool)(this["SDCardISOMode"]));
             }
-            set
-            {
+            set {
                 this["SDCardISOMode"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("640")]
-        public int ViewWidth
-        {
-            get
-            {
+        public int ViewWidth {
+            get {
                 return ((int)(this["ViewWidth"]));
             }
-            set
-            {
+            set {
                 this["ViewWidth"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("480")]
-        public int ViewHeight
-        {
-            get
-            {
+        public int ViewHeight {
+            get {
                 return ((int)(this["ViewHeight"]));
             }
-            set
-            {
+            set {
                 this["ViewHeight"] = value;
-            }
-        }
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ViewIsMaximized
-        {
-            get
-            {
-                return ((bool)(this["ViewIsMaximized"]));
-            }
-            set
-            {
-                this["ViewIsMaximized"] = value;
             }
         }
     }

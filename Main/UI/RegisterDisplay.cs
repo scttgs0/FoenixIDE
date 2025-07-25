@@ -1,5 +1,6 @@
 ﻿using FoenixIDE.Processor;
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace FoenixIDE
@@ -12,6 +13,7 @@ namespace FoenixIDE
         }
 
         private CPU _cpu;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public CPU CPU
         {
             get { return this._cpu; }

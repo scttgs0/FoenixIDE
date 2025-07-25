@@ -1089,8 +1089,9 @@ namespace FoenixIDE.UI
             {
                 if (kernel.CPU.CPUThread != null)
                 {
-                    kernel.CPU.CPUThread.Abort();
+                    //kernel.CPU.CPUThread.Abort();
                     kernel.CPU.CPUThread.Join(1000);
+                    kernel.CPU.CPUThread = null;
                 }
             }
 

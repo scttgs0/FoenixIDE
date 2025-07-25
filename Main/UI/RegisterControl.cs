@@ -17,6 +17,7 @@ namespace FoenixIDE.UI
         FoenixIDE.Processor.Register _register = null;
         FoenixIDE.Processor.RegisterBankNumber _bank = null;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Caption
         {
             get { return this._caption; }
@@ -27,6 +28,7 @@ namespace FoenixIDE.UI
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Value
         {
             get
@@ -41,6 +43,7 @@ namespace FoenixIDE.UI
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ReadOnly
         {
             get
@@ -55,6 +58,7 @@ namespace FoenixIDE.UI
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Browsable(false)]
         public Register Register
         {
@@ -86,6 +90,7 @@ namespace FoenixIDE.UI
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public RegisterBankNumber Bank
         {
             get { return this._bank; }

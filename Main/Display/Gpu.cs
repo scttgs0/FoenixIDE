@@ -1,10 +1,11 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Drawing.Imaging;
-using FoenixIDE.MemoryLocations;
-using KGySoft.CoreLibraries;
+﻿using FoenixIDE.MemoryLocations;
 using FoenixIDE.Simulator.Devices;
+using KGySoft.CoreLibraries;
+using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace FoenixIDE.Display
 {
@@ -605,6 +606,7 @@ namespace FoenixIDE.Display
 
         bool CursorState = true;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool TileEditorMode
         {
             get

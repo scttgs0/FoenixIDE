@@ -157,7 +157,7 @@ namespace KGySoft.CoreLibraries
             isRunning = false;
             if (thread != null)
             {
-                thread.Abort();
+                //thread.Abort();
                 thread = null;
             }
         }
